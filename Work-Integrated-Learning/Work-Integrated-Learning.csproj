@@ -7,4 +7,12 @@
     <RootNamespace>Work_Integrated_Learning</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Home\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+
 </Project>
