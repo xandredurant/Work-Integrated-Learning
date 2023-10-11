@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/contact.css" asp-append-version="true" />
+    <title>Survey</title>
+</head>
+<body class="contact">
+    <h2 style="text-align:center; padding-top:30px;">If you want to contact us</h2>
+    <div style="text-align: center;">
+        <p style="text-align: center;">We as an Event Organization company would like to receive your<br /> valuable input as we are in the business of providing top service for our customers </p>
+    </div>
+
+
+    <div class="container " style="max-width:1000px; margin-left:300px; padding-top:30px;">
+    <form class="row g-4">
+
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+            </div>
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
+                    <label for="floatingInputGrid" style="color:black">Email address</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                        <option selected>Choose... </option>
+                        <option value="1">Staff</option>
+                        <option value="2">Order Placement</option>
+                        <option value="3">Civil Matter</option>
+                        <option value="4">Improvements</option>
+                        <option value="5">Other</option>
+
+
+                    </select>
+                    <label for="floatingSelectGrid" style="color:black">Issue</label>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="exampleFormControlTextarea1" class="form-label">Tell us about your experience</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+            </div>
+            
+            
+            <div class="col-12">
+                <button type="submit" class="btn" style="background-color:#800000; color:white">Submit Message</button>
+            </div>
+    </form>
+    </div>
+</body>
+
+</html>

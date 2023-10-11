@@ -1,0 +1,134 @@
+﻿:root {
+    --primary-color: #04263E;
+    --secondary-color: #aeb8b8;
+    --accent-color-1: #86172;
+    --accent-color-2: #75001e;
+}
+
+/* Page styling */
+main {
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-color);
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: var(--accent-color-1);
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+/* Voucher List */
+#voucher-list {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.voucher {
+    border: 1px solid var(--accent-color-1);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+   
+}
+
+    .voucher h5 {
+        font-family: 'Nanum Pen Script', cursive;
+    }
+
+
+    .voucher:hover {
+        background-color: var(--accent-color-2);
+        color: #fff;
+    }
+
+.voucher-details {
+    display: none;
+    color: white;
+    font-family: 'Space Mono', monospace;
+}
+
+.voucher.open {
+    background-color: var(--accent-color-2); /* Change to your desired color */
+    color: white;
+}
+
+    .voucher.open .voucher-name {
+        text-decoration: underline;
+    }
+
+/* Redeem Vouchers Form */
+#redeem-form {
+    background-color: var( --secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    background-color: var(--accent-color-1);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Voucher Usage History */
+#usage-history {
+    background-color: var( --secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.usage-entry {
+    border: 1px solid var(--accent-color-2);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* Dropdown styling */
+.voucher-dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.voucher-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.voucher-dropdown:hover .voucher-dropdown-content {
+    display: block;
+}

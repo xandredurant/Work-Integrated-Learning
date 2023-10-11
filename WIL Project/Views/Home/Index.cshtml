@@ -1,0 +1,200 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <style>
+        /* Styles for .swiper */
+        .swiper {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+        }
+
+        /* Styles for .swiper-wrapper */
+        .swiper-wrapper {
+            display: flex; /* Display slides in a row */
+            flex-direction: row; /* Set the direction to horizontal */
+        }
+
+        /* Styles for .swiper-slide */
+        .swiper-slide {
+            flex-shrink: 0; /* Prevent slides from shrinking */
+            width: 100%; /* Set a fixed width as a percentage of the container */
+            padding: 10px; /* Add some spacing between slides */
+        }
+
+        /* Styles for .swiper-slide img */
+        .swiper-slide img {
+            width: 100%; /* Make images responsive within the slide */
+            aspect-ratio: 16/9;
+        }
+
+        /* Styles for .info-count-block */
+        .info-count-block {
+            height: 100%;
+            color: #fff;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 36px 0;
+            background: #04263E;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+
+        /* Styles for .mySwiper2 */
+        .mySwiper2 {
+            padding: 20px !important;
+            max-width: calc(100% - 40px); /* Adjust maximum width */
+            margin: 20px auto; /* Center the container */
+        }
+
+        .above-slide-bar {
+            background: #04263E; /* Set the background color */
+            color: #fff; /* Set the text color */
+            text-align: center;
+            padding:10px 0; /* Adjust padding as needed */
+            font-size: 18px; /* Adjust font size as needed */
+            width: 100vw; /* Use viewport width to make it span the full screen width */
+            margin-top: 10px; /* Adjust the top margin to push it down below the navbar */
+            display: block; /* Set display to block to allow setting width */
+        }
+    </style>
+</head>
+<body class="home">
+    <span class="above-slide-bar" style="text-align:center;">Join us for the BIGGEST CTU event of the year!</span>
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="~/Images/Slide1.png" alt="Design Faculty">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="~/Images/Slide2.png" alt="CAD Faculty">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="~/Images/Slide3.png" alt="IT Faculty">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="~/Images/Slide4.png" alt="Web Design Faculty">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="~/Images/Slide5.png" alt="Graphic Design">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="~/Images/Slide6.png" alt="Tourism Faculty">
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <div class="swiper mySwiper2" style="z-index: 1">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="info-count-block" style="margin-left: 0 !important;">
+                    <div>
+                        Over <br><br>
+                        <p style="font-size: 35px; margin: 0 !important;">1300</p><br>Yearly Visitors
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="info-count-block">
+                    <div>
+                        A <br><br>
+                        <p style="font-size: 35px; margin: 0 !important;">GREAT</p><br>Display of Technology
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="info-count-block">
+                    <div>
+                        Discount <br><br>
+                        <p style="font-size: 35px; margin: 0 !important;">VOUCHERS</p><br>Available
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="info-count-block">
+                    <div>
+                        The <br><br>
+                        <p style="font-size: 35px; margin: 0 !important;">BIGGEST</p><br>Event of the Year
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="info-count-block">
+                    <div>
+                        Hosted by <br><br>
+                        <p style="font-size: 35px; margin: 0 !important;">CTU</p><br>Created by Students
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="countdown-timer" style="background: #04263E; color: #fff; text-align: center; padding: 20px 0;">
+        <h1>Countdown</h1>
+        <div id="countdown"></div>
+    </div>
+
+    <script>
+        // Initialize Swiper for the image slider
+        var swiper = new Swiper('.mySwiper', {
+            slidesPerView: 1,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            loop: true, // Enable loop for the image slides
+            autoplay: {
+                delay: 3000, // Auto slide every 3 seconds (adjust as needed)
+            },
+        });
+
+        // Initialize Swiper for the info count block
+        var swiper2 = new Swiper('.mySwiper2', {
+            slidesPerView: 3, // Allow multiple info blocks to be visible
+            spaceBetween: 20,
+            autoplay: {
+                delay: 3000, // Auto slide every 3 seconds (adjust as needed)
+            },
+        });
+
+        // Set the date and time for your event (adjust as needed)
+        var eventDate = new Date("2023-10-27 09:00:00").getTime();
+
+        // Update the countdown every second
+        var countdown = setInterval(function () {
+            var currentDate = new Date().getTime();
+            var timeLeft = eventDate - currentDate;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "Event has started!";
+            } else {
+                var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML =
+                    days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

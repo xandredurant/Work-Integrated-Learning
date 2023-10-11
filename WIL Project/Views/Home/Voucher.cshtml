@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Voucher.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Autour+One&family=Kalam:wght@300&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display+SC&family=Russo+One&family=Shadows+Into+Light&family=Share+Tech+Mono&family=Space+Grotesk&display=swap" rel="stylesheet">
+    <title>Voucher Page</title>
+</head>
+<body>
+    <h1 style="color:white;">Available Vouchers</h1>
+    <div class="voucher-container">
+        <div class="voucher" onclick="toggleVoucherDetails(this)">
+            <h5 class="voucher-name">Voucher 1</h5>
+            <div class="voucher-details">
+                <p><strong>Voucher Code:</strong> ABC123</p>
+                <p><strong>Value:</strong> R750</p>
+                <p><strong>Expiration Date:</strong> 2023-12-31</p>
+            </div>
+        </div>
+
+        <div class="voucher" onclick="toggleVoucherDetails(this)">
+            <h5 class="voucher-name">Voucher 2</h5>
+            <div class="voucher-details">
+                <p><strong>Voucher Code:</strong> XYZ456</p>
+                <p><strong>Value:</strong> R525</p>
+                <p><strong>Expiration Date:</strong> 2023-10-31</p>
+            </div>
+        </div>
+        <!-- Add more vouchers as needed -->
+    </div>
+
+    <h2 style="color:white;">Redeem Vouchers</h2>
+    <form id="redeem-form">
+        <label for="voucher-code">Enter Voucher Code:</label>
+        <input type="text" id="voucher-code" name="voucher-code" required>
+        <button type="submit" style="color:white; background-color:#75001e; margin-top:15px;">Redeem</button>
+    </form>
+
+    <h2>Voucher Usage History</h2>
+    <div id="usage-history">
+        <!-- Example usage history entries -->
+        <div class="usage-entry">
+            <p><strong>Date:</strong> 2023-09-15</p>
+            <p><strong>Voucher Code:</strong> ABC123</p>
+            <p><strong>Purpose:</strong> Applied to purchase #123</p>
+        </div>
+        <div class="usage-entry">
+            <p><strong>Date:</strong> 2023-09-20</p>
+            <p><strong>Voucher Code:</strong> XYZ456</p>
+            <p><strong>Purpose:</strong> Added to user's account</p>
+        </div>
+        <!-- Add more usage history entries as needed -->
+    </div>
+
+    <script>
+        function toggleVoucherDetails(voucher) {
+            const details = voucher.querySelector('.voucher-details');
+            details.style.display = details.style.display === 'block' ? 'none' : 'block';
+            voucher.classList.toggle('open'); // Add or remove 'open' class
+        }
+    </script>
+</body>
+</html>

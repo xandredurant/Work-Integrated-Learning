@@ -1,0 +1,104 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+
+}
+
+/* Remove margin from the left of the logo and the right of the navbar */
+.navbar {
+}
+
+/* Center the logo vertically within the navbar */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+body.home .nav-home,
+body.contact .nav-contact,
+body.speakersL .nav-speakersL,
+body.events .nav-events,
+body.schedule .nav-schedule,
+body.survey .nav-survey,
+body.program .nav-program,
+body.vouchers .nav-vouchers {
+    background: #800000;
+    color: white !important;
+    border-radius: 5px;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: black;
+}
+    .navbar-nav .nav-item .nav-link2 {
+        color: black;
+    }
+
+.navbar-nav .nav-item:hover .nav-link {
+    background: #800000;
+    color: white;
+    border-radius:5px;
+}
+    .navbar-nav .nav-item:hover .nav-link2 {
+        background: #800000;
+        color: white;
+        border-radius: 15px;
+        
+    }
+
+
+    .LoginOrRegister {
+        background-color: #267aa0;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        color: white;
+    }
+
+.LoginOrRegister li{
+    color:white;
+}
+
+
+input {
+    height: 40px; /* Adjust the height value as needed */
+}
+
+a{
+    font-size:17px;
+
+}
+
+.footer {
+    text-align: center;
+    margin-top: 10px;
+    border-top: 1px solid rgba(250,250,250,0.15);
+    padding: 20px 0px;
+}
+
+    .footer p {
+        text-transform: uppercase;
+        font-size: 16px;
+        color: black;
+    }

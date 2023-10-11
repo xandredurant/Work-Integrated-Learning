@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/survey.css" asp-append-version="true" />
+    <title>Survey</title>
+</head>
+<body class="survey">
+    <h2 style="text-align:center; padding-top:30px;">Please Fill Out This Survey</h2>
+    <div style="text-align: center;">
+        <p style="text-align: center;">We as an Event Organization company would like to receive your<br /> valuable input as we are in the business of providing top service for our customers </p>
+    </div>
+
+
+    <div class="container " style="max-width:1000px; margin-left:300px; padding-top:30px;">
+    <form class="row g-4">
+
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+            </div>
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
+                    <label for="floatingInputGrid" style="color:black">Email address</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                        <option selected>Choose... </option>
+                        <option value="1">First Time Participation</option>
+                        <option value="2">Participated more than once</option>
+                        <option value="3">Never Been To</option>
+                    </select>
+                    <label for="floatingSelectGrid" style="color:black">Participation</label>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="exampleFormControlTextarea1" class="form-label">Tell us about your experience</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="inputState" class="form-label">Overall, Rate the Event</label>
+                <select id="inputState" class="form-select">
+                    <option selected>Choose...</option>
+                    <option value="1">Excellent</option>
+                    <option value="2">Very Good</option>
+                    <option value="3">Good</option>
+                    <option value="4">Fair</option>
+                    <option value="5">Poor</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="inputState" class="form-label">How helpful were the staff</label>
+                <select id="inputState" class="form-select">
+                    <option selected>Choose...</option>
+                    <option value="1">Excellent Service</option>
+                    <option value="2">Good Service</option>
+                    <option value="3">Average Sercive</option>
+                    <option value="4">Bad Service</option>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <label for="exampleFormControlTextarea1" class="form-label">What did you dislike about the event</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="inputState" class="form-label">Would you recommend the event to someone else</label>
+                <select id="inputState" class="form-select">
+                    <option selected>Choose...</option>
+                    <option value="1">Yes</option>
+                    <option value="2">50/50</option>
+                    <option value="3">No</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="inputState" class="form-label">How did you find out about us</label>
+                <select id="inputState" class="form-select">
+                    <option selected>Choose...</option>
+                    <option value="1">Marketing</option>
+                    <option value="2">Word of Mouth</option>
+                    <option value="3">Colleagues</option>
+                    <option value="4">Family and Friends</option>
+                    <option value="5">Other</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Agree to the terms and Conditions
+                    </label>
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn" style="background-color:#800000; color:white">Submit Survey</button>
+            </div>
+    </form>
+    </div>
+</body>
+
+</html>

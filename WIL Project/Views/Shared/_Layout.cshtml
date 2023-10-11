@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WIL_Project</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white box-shadow">
+           
+            <!-- Logo Section (far left) -->
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img width="200" src="https://ctutraining.ac.za/wp-content/uploads/2021/07/CTU-PTE_MAIN-LOGO.png" alt="Logo" class="logo-img">
+            </a>
+
+            <!-- Navigation and Login Section (far right) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-home" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-program" asp-area="" asp-controller="Home" asp-action="Program">Program</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-speakersL" asp-area="" asp-controller="Home" asp-action="speakers">Speakers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-schedule" asp-area="" asp-controller="Home" asp-action="Schedule">Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-contact" asp-area="" asp-controller="Home" asp-action="contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-survey" asp-area="" asp-controller="Home" asp-action="survey">Survey</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-events" asp-area="" asp-controller="Home" asp-action="Events">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-vouchers" asp-area="" asp-controller="Home" asp-action="Voucher">Vouchers</a>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial.cshtml" />
+            </div>
+        </nav>
+    </header>
+
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>
+            Copyright © 2023. All Rights Reserved.
+            <br>Design: Lefa . Xandre . Liam . Lebo . Eloff
+        </p>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

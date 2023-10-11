@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true" />
+    <title>Program</title>
+</head>
+<body class="program">
+    <section id="program-overview">
+        <h2>Program Overview</h2>
+        <div class="paragraph-container">
+            <p>
+                Welcome to TECHSPO Johannesburg, where we offer a diverse range of
+                programs designed to enrich your knowledge and inspire innovation. Our
+                programs are carefully curated to provide valuable insights, foster
+                networking opportunities, and drive meaningful discussions within the
+                technology and innovation ecosystem.
+            </p>
+
+            <p>
+                At TECHSPO, we believe in pushing the boundaries of technology, and our
+                programs reflect that commitment. Whether you're a seasoned
+                professional, a tech enthusiast, or a curious learner, you'll find
+                something tailored to your interests and needs.
+            </p>
+
+            <p>
+                Our programs include interactive workshops, thought-provoking keynote
+                sessions, engaging panel discussions, and much more. Each program is led
+                by industry experts, innovators, and visionaries who are at the
+                forefront of technological advancements.
+            </p>
+
+            <p>
+                Join us as we explore the latest trends, tackle pressing challenges, and
+                celebrate the spirit of innovation. Discover how TECHSPO Johannesburg
+                can help you stay at the cutting edge of technology and contribute to
+                the great reset of our world.
+            </p>
+        </div>
+    </section>
+    <section id="program-categories">
+        <h2>Program Categories</h2>
+        <ul class="category-list">
+            <li class="category-item">
+                <h3>Workshops</h3>
+                <img style="max-width: calc(800px / 4);" src="https://www.kgpraigarh.ac.in/images/web_img/workshop1.png" alt="Workshops Image">
+                <p>Hands-on workshops where you can gain practical skills and knowledge directly from industry experts. Explore the latest tools and technologies.</p>
+            </li>
+            <li class="category-item">
+                <h3>Keynote Sessions</h3>
+                <img style="max-width: calc(800px / 4);" src="https://i.ytimg.com/vi/yIrxb0NTwis/maxresdefault.jpg" alt="Keynote Sessions Image">
+                <p>Powerful keynote sessions featuring renowned speakers who will share their insights and vision for the future of technology.</p>
+            </li>
+            <li class="category-item">
+                <h3>Panel Discussions</h3>
+                <img style="max-width: calc(800px / 4);" src="https://busyconf.com/blog/images/2013-07-03-panel.jpg" alt="Panel Discussions Image">
+                <p>Engaging panel discussions with experts, thought leaders, and innovators. Dive deep into important tech-related topics and trends.</p>
+            </li>
+            <li class="category-item">
+                <h3>Hands-On Demos</h3>
+                <img style="max-width: calc(800px / 4);" src="https://cvp.com/images/uploaded/events/64db81c8d6e64alexa-35-hands-on-demos-banner.jpg" alt="Hands-On Demos Image">
+                <p>Live demonstrations of cutting-edge technologies and innovations. Get a firsthand look at what's shaping the tech landscape.</p>
+            </li>
+        </ul>
+    </section>
+
+    <section id="program-schedule">
+        <h2>Program Schedule</h2><br />
+        
+
+        <!-- Program 1 -->
+        <div class="program">
+            <h3 class="program-name">Program Name 1</h3>
+            <button class="show-details">More Info</button>
+            <div class="program-details">
+                <p><strong>Description:</strong> Program 1 description goes here.</p>
+                <p><strong>Date and Time:</strong> November 2, 2023, 10:00 AM - 11:30 AM</p>
+                <p><strong>Venue:</strong> Gazibo Tent 1 (Green)</p>
+                <p><strong>Speaker:</strong> Speaker Name 1</p>
+                <p><strong>Topic:</strong> Topic 1</p>
+                <p><strong>Prerequisites:</strong> None</p>
+            </div>
+        </div>
+
+        <!-- Program 2 -->
+        <div class="program">
+            <h3 class="program-name">Program Name 2</h3>
+            <button class="show-details">More Info</button>
+            <div class="program-details">
+                <p><strong>Description:</strong> Program 2 description goes here.</p>
+                <p><strong>Date and Time:</strong> November 2, 2023, 1:00 PM - 2:30 PM</p>
+                <p><strong>Venue:</strong> Gazibo Tent 2 (Blue)</p>
+                <p><strong>Speaker:</strong> Speaker Name 2</p>
+                <p><strong>Topic:</strong> Topic 2</p>
+                <p><strong>Prerequisites:</strong> Basic knowledge of programming</p>
+            </div>
+        </div>
+
+
+        <!-- Add more program entries as needed -->
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const programButtons = document.querySelectorAll('.show-details');
+            const programDetails = document.querySelectorAll('.program-details');
+
+            programButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    // Toggle the display of program details
+                    programDetails[index].style.display = programDetails[index].style.display === 'block' ? 'none' : 'block';
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

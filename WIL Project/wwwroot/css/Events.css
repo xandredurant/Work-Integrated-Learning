@@ -1,0 +1,79 @@
+﻿/* Add your custom styles for the event page here */
+main {
+    background-color: #04263E;
+}
+/* Event list container */
+.event-list {
+    padding: 20px;
+}
+
+/* Event container */
+.event {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background-color:white;
+}
+
+/* Event title */
+.event-title {
+    color: #333;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Event details */
+.event-details {
+    padding: 10px 0;
+}
+
+/* Reviews container */
+.event-reviews {
+    display: none;
+    padding-top: 10px;
+}
+
+/* Reviews title */
+.reviews-title {
+    color: #333;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Review */
+.review {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* Review header */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Review author */
+.review-author {
+    color: #555;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Review rating */
+.review-rating {
+    color: #555;
+    font-size: 16px;
+}
+
+/* Review text */
+.review-text {
+    color: #333;
+    font-size: 16px;
+    margin-top: 5px;
+}

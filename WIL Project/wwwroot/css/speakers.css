@@ -1,0 +1,68 @@
+﻿/*
+---------------------------------------------
+speakers page
+---------------------------------------------
+*/
+/* Reset some styles */
+body, h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    background-color: #04263E;
+}
+
+/* Header styles */
+.speakerhead {
+    text-align: center;
+    padding: 40px 0;
+    color: #ffffff;
+}
+
+    .speakerhead h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .speakerhead p {
+        font-size: 18px;
+    }
+
+/* Speakers section styles */
+.speakers {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.speaker {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    width: 300px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    color:black !important;
+}
+
+    .speaker img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .speaker h2 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .speaker p {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
