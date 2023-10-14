@@ -9,7 +9,7 @@
         public string Role { get; set; }
 
         // Navigation properties for related reviews and surveys
-        public List<ReviewAndRating> Reviews { get; set; }
+        public List<ReviewRating> Reviews { get; set; }
         public List<Survey> Surveys { get; set; }
     }
 }
