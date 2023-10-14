@@ -36,13 +36,13 @@ namespace WIL_Project.DBContext
             modelBuilder.Entity<SessionInformation>().HasKey(s => s.SessionID);
 
             // Define the primary key for SpeakerInformation
-            modelBuilder.Entity<SpeakerInformation>().HasKey(s => d.SpeakerID);
+            modelBuilder.Entity<SpeakerInformation>().HasKey(s => s.SpeakerID);
 
             // Define the primary key for Survey
-            modelBuilder.Entity<Survey>().HasKey(d => d.SurveyID);
+            modelBuilder.Entity<Survey>().HasKey(s => s.SurveyID);
 
             // Define the primary key for UserInfo
-            modelBuilder.Entity<UserInfo>().HasKey(d => d.UserID);
+            modelBuilder.Entity<UserInfo>().HasKey(u => u.UserID);
 
             // Define relationships and constraints here if needed
             modelBuilder.Entity<SessionInformation>()
