@@ -15,7 +15,7 @@ namespace WIL_Project.Models
         public int SessionID { get; set; }
         [ForeignKey("UserInfo")]
         public int UserID { get; set; }
-        public int Rating { get; set; }
+        public decimal Rating { get; set; }
         public string ReviewText { get; set; }
         public DateTime ReviewDate { get; set; }
 

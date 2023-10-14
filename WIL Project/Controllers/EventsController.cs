@@ -17,10 +17,18 @@ namespace WIL_Project.Controllers
 
         public IActionResult Index()
         {
-            // Retrieve events with related reviews using Entity Framework
             var eventsWithReviews = _dbContext.EventInformation
-                .Include(e => e.Reviews) // Include reviews related to events
+                .Include(e => e.Reviews)
                 .ToList();
+
+            // Load related UserInfo for each review
+            foreach (var ev in eventsWithReviews)
+            {
+                foreach (var review in ev.Reviews)
+                {
+                    _dbContext.Entry(review).Reference(r => r.UserInfo).Load();
+                }
+            }
 
             return View(eventsWithReviews);
         }
