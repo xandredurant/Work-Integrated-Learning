@@ -1,6 +1,6 @@
 ﻿namespace WIL_Project.Models
 {
-    public class UserInformation
+    public class UserInfo
     {
         public int UserID { get; set; }
         public string Username { get; set; }
