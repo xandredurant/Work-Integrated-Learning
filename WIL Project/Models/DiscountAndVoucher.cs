@@ -11,6 +11,6 @@
         public string ApplicableEvents { get; set; }
 
         // Navigation property for redemptions related to this discount
-        public List<DiscountAndVoucherRedemption> Redemptions { get; set; }
+        public List<DiscountVoucherRedemption> Redemptions { get; set; }
     }
 }
