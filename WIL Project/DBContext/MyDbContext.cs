@@ -44,24 +44,6 @@ namespace WIL_Project.DBContext
             // Define the primary key for UserInfo
             modelBuilder.Entity<UserInfo>().HasKey(u => u.UserID);
 
-            // Define relationships and constraints
-            modelBuilder.Entity<DiscountVoucher>()
-                .HasMany(d => d.Redemptions) // DiscountVoucher has many Redemptions
-                .WithOne(r => r.DiscountVoucher) // Each Redemption belongs to one DiscountVoucher
-                .HasForeignKey(r => r.Code); // Foreign key for Redemption
-
-            // Define relationships for other entities as needed
-
-            modelBuilder.Entity<EventInformation>()
-                .HasMany(e => e.Reviews) // EventInformation has many Reviews
-                .WithOne(r => r.EventInformation) // Each Review belongs to one EventInformation
-                .HasForeignKey(r => r.EventID); // Foreign key for Review
-
-            modelBuilder.Entity<SessionInformation>()
-                .HasOne(s => s.EventInformation) // SessionInformation has one EventInformation
-                .WithMany(e => e.Sessions) // EventInformation can have many Sessions
-                .HasForeignKey(s => s.EventID); // Foreign key for SessionInformation
-
             // Define the relationships and constraints
             modelBuilder.Entity<DiscountVoucher>()
             .HasMany(d => d.Redemptions)
