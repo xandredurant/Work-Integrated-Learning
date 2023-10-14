@@ -1,6 +1,6 @@
 ﻿namespace WIL_Project.Models
 {
-    public class DiscountAndVoucherRedemption
+    public class DiscountVoucherRedemption
     {
         public int RedemptionID { get; set; }
         public int UserID { get; set; }
