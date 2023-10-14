@@ -1,14 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using WIL_Project.Areas.Identity.Data;
 using WIL_Project.Models;
 
 namespace WIL_Project.DBContext
 {
-    public class MyDbContext : DbContext
+    public class MyDbContext : IdentityDbContext<SampleUser>
     {
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
@@ -25,6 +22,8 @@ namespace WIL_Project.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             // Define the primary key for DiscountVoucher
             modelBuilder.Entity<DiscountVoucher>().HasKey(d => d.Code);
 
@@ -48,6 +47,8 @@ namespace WIL_Project.DBContext
 
             // Define the primary key for UserInfo
             modelBuilder.Entity<UserInfo>().HasKey(u => u.UserID);
+
+            // Add any additional configuration or relationships for your entities here.
         }
     }
 }
