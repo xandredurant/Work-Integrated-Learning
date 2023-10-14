@@ -20,6 +20,9 @@ namespace WIL_Project.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Define the primary key for DiscountVoucher
+            modelBuilder.Entity<DiscountVoucher>().HasKey(d => d.Code);
+
             // Define relationships and constraints here if needed
             modelBuilder.Entity<SessionInformation>()
                 .HasOne(s => s.EventInformation)

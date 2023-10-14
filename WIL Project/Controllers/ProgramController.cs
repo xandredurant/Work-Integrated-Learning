@@ -2,7 +2,7 @@
 
 namespace WIL_Project.Controllers
 {
-    public class SessionController : Controller
+    public class ProgramController : Controller
     {
         public IActionResult Index()
         {
