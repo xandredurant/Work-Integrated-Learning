@@ -12,6 +12,6 @@
         // Navigation properties for related event, session, and user
         public EventInformation EventInformation { get; set; }
         public SessionInformation SessionInformation { get; set; }
-        public UserInformation UserInformation { get; set; }
+        public UserInfo UserInfo { get; set; }
     }
 }
