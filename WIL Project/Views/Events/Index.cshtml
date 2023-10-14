@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Event Details";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Events.css" asp-append-version="true" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Event Details</title>
+</head>
+<body class="events">
+    <main>
+        <section class="event-list">
+            <div class="container">
+                <!-- Event 1 -->
+                <div class="event" id="event1">
+                    <h1 class="event-title">Event Title 1</h1>
+                    <div class="event-details" style="display: none;">
+                        <p>Date: November 12, 2023</p>
+                        <p>Time: 10:00 AM - 12:00 PM</p>
+                        <p>Location: Main Hall</p>
+                        <p>Description: This is a description.</p>
+                    </div>
+                    <div class="event-reviews" id="reviews1">
+                        <h2 class="reviews-title">Event Reviews</h2>
+
+                        <!-- Review 1 for Event 1 -->
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="review-author">John Doe</span>
+                                <span class="review-rating">Rating: 4/5</span>
+                            </div>
+                            <p class="review-text">Great event with informative sessions. Highly recommended!</p>
+                        </div>
+
+                        <!-- Review 2 for Event 1 -->
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="review-author">Jane Smith</span>
+                                <span class="review-rating">Rating: 5/5</span>
+                            </div>
+                            <p class="review-text">Excellent event, well-organized, and valuable insights.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event" id="event2">
+                    <h1 class="event-title">Event Title 2</h1>
+                    <div class="event-details" style="display: none;">
+                        <p>Date: November 14, 2023</p>
+                        <p>Time: 2:00 PM - 4:00 PM</p>
+                        <p>Location: Seminar Room</p>
+                        <p>Description: Another event description goes here.</p>
+                    </div>
+                    <div class="event-reviews" id="reviews2">
+                        <h2 class="reviews-title">Event Reviews</h2>
+
+                        <!-- Review 1 for Event 2 -->
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="review-author">Mike Johnson</span>
+                                <span class="review-rating">Rating: 4.5/5</span>
+                            </div>
+                            <p class="review-text">Enjoyed the event, but could use more hands-on workshops.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event" id="event3">
+                    <h1 class="event-title">Event Title 3</h1>
+                    <div class="event-details" style="display: none;">
+                        <p>Date: November 16, 2023</p>
+                        <p>Time: 3:00 PM - 5:00 PM</p>
+                        <p>Location: Conference Room A</p>
+                        <p>Description: Description for the third event goes here.</p>
+                    </div>
+                    <div class="event-reviews" id="reviews3">
+                        <h2 class="reviews-title">Event Reviews</h2>
+
+                        <!-- Review 1 for Event 3 -->
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="review-author">Emily Davis</span>
+                                <span class="review-rating">Rating: 4.5/5</span>
+                            </div>
+                            <p class="review-text">Informative sessions and great networking opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        $(document).ready(function () {
+            // Hide all event details and reviews initially
+            $(".event-details, .event-reviews").hide();
+
+            // Handle click events on event titles
+            $(".event-title").click(function () {
+                // Find the parent event container
+                var eventContainer = $(this).closest(".event");
+
+                // Toggle the visibility of event details and reviews within the clicked event
+                eventContainer.find(".event-details, .event-reviews").slideToggle();
+            });
+        });
+    </script>
+
+</body>
+</html>
