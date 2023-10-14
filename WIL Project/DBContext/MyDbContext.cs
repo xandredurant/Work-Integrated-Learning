@@ -25,6 +25,30 @@ namespace WIL_Project.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Define the primary key for DiscountVoucher
+            modelBuilder.Entity<DiscountVoucher>().HasKey(d => d.Code);
+
+            // Define the primary key for DiscountVoucherRedemption
+            modelBuilder.Entity<DiscountVoucherRedemption>().HasKey(d => d.RedemptionID);
+
+            // Define the primary key for EventInformation
+            modelBuilder.Entity<EventInformation>().HasKey(e => e.EventID);
+
+            // Define the primary key for ReviewRating
+            modelBuilder.Entity<ReviewRating>().HasKey(r => r.ReviewID);
+
+            // Define the primary key for SessionInformation
+            modelBuilder.Entity<SessionInformation>().HasKey(s => s.SessionID);
+
+            // Define the primary key for SpeakerInformation
+            modelBuilder.Entity<SpeakerInformation>().HasKey(s => s.SpeakerID);
+
+            // Define the primary key for Survey
+            modelBuilder.Entity<Survey>().HasKey(s => s.SurveyID);
+
+            // Define the primary key for UserInfo
+            modelBuilder.Entity<UserInfo>().HasKey(u => u.UserID);
+
             modelBuilder.Entity<DiscountVoucher>()
                 .HasMany(d => d.Redemptions)
                 .WithOne(r => r.DiscountVoucher)
