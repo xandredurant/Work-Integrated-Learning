@@ -14,5 +14,6 @@
 
         // Navigation property for reviews related to this event
         public List<ReviewRating> Reviews { get; set; }
+        public List<Survey> Surveys { get; set; }
     }
 }

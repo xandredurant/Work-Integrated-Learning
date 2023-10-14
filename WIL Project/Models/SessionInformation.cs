@@ -14,5 +14,6 @@
         // Navigation properties for related entities
         public EventInformation EventInformation { get; set; } // Represents the related event
         public SpeakerInformation SpeakerInformation { get; set; } // Represents the related speaker
+        public List<Survey> Surveys { get; set; }
     }
 }
