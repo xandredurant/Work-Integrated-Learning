@@ -50,9 +50,7 @@ namespace WIL_Project.DBContext
                 .WithMany(d => d.DiscountVouchers);
 
             modelBuilder.Entity<DiscountVoucheRedemption>()
-                .HasForeignKey(d => d.UserID);
-
-            modelBuilder.Entity<DiscountVoucheRedemption>()
+                .HasForeignKey(d => d.UserID)
                 .HasForeignKey(d => d.Code);
         }
     }
