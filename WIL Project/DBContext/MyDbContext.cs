@@ -61,7 +61,109 @@ namespace WIL_Project.DBContext
                 .HasOne(s => s.EventInformation) // SessionInformation has one EventInformation
                 .WithMany(e => e.Sessions) // EventInformation can have many Sessions
                 .HasForeignKey(s => s.EventID); // Foreign key for SessionInformation
+
+            // Define the relationships and constraints
+            modelBuilder.Entity<DiscountVoucher>()
+            .HasMany(d => d.Redemptions)
+            .WithMany(r => r.DiscountVouchers)
+            .UsingEntity<Dictionary<string, object>>(
+                "DiscountVoucherRedemption",
+                j => j
+                    .HasOne<Redemption>()
+                    .WithMany()
+                    .HasForeignKey("RedemptionId")
+                    .HasConstraintName("FK_DiscountVoucherRedemption_RedemptionId")
+                    .OnDelete(DeleteBehavior.Cascade),
+                j => j
+                    .HasOne<DiscountVoucher>()
+                    .WithMany()
+                    .HasForeignKey("DiscountVoucherId")
+                    .HasConstraintName("FK_DiscountVoucherRedemption_DiscountVoucherId")
+                    .OnDelete(DeleteBehavior.Cascade),
+                j =>
+                {
+                    j.HasKey("DiscountVoucherId", "RedemptionId");
+                    j.HasIndex("RedemptionId");
+                });
             
+            modelBuilder.Entity<DiscountVoucherRedemption>()
+                .HasKey(dvr => new { dvr.RedemptionID, dvr.UserID });
+
+            modelBuilder.Entity<DiscountVoucherRedemption>()
+                .HasOne(dvr => dvr.Redemption)
+                .WithMany(r => r.DiscountVoucherRedemptions)
+                .HasForeignKey(dvr => dvr.RedemptionID);
+
+            modelBuilder.Entity<DiscountVoucherRedemption>()
+                .HasOne(dvr => dvr.DiscountVoucher)
+                .WithMany(d => d.DiscountVoucherRedemptions)
+                .HasForeignKey(dvr => dvr.UserID);
+
+            modelBuilder.Entity<SessionInformation>()
+                .HasOne(s => s.Event)
+                .WithMany(e => e.Sessions)
+                .HasForeignKey(s => s.EventID);
+
+            modelBuilder.Entity<ReviewRating>()
+                .HasOne(r => r.Event)
+                .WithMany(e => e.Reviews)
+                .HasForeignKey(r => r.EventID);
+
+            modelBuilder.Entity<ReviewRating>()
+                .HasOne(r => r.EventInformation)
+                .WithMany(e => e.Reviews)
+                .HasForeignKey(r => r.EventID);
+
+            modelBuilder.Entity<ReviewRating>()
+                .HasOne(r => r.SessionInformation)
+                .WithMany(s => s.Reviews)
+                .HasForeignKey(r => r.SessionID);
+
+            modelBuilder.Entity<ReviewRating>()
+                .HasOne(r => r.UserInfo)
+                .WithMany(u => u.Reviews)
+                .HasForeignKey(r => r.UserID);
+
+            modelBuilder.Entity<SessionInformation>()
+                .HasOne(s => s.EventInformation)
+                .WithMany(e => e.Sessions)
+                .HasForeignKey(s => s.EventID);
+
+            modelBuilder.Entity<SessionInformation>()
+                .HasOne(s => s.SpeakerInformation)
+                .WithMany(sp => sp.Sessions)
+                .HasForeignKey(s => s.SpeakerID);
+
+            modelBuilder.Entity<SpeakerInformation>()
+                .HasMany(s => s.Sessions)
+                .WithOne(session => session.SpeakerInformation)
+                .HasForeignKey(session => session.SpeakerID);
+
+            modelBuilder.Entity<Survey>()
+                .HasOne(s => s.EventInformation)
+                .WithMany(e => e.Surveys)
+                .HasForeignKey(s => s.EventID);
+
+            modelBuilder.Entity<Survey>()
+                .HasOne(s => s.SessionInformation)
+                .WithMany(session => session.Surveys)
+                .HasForeignKey(s => s.SessionID);
+
+            modelBuilder.Entity<Survey>()
+                .HasOne(s => s.UserInfo)
+                .WithMany(u => u.Surveys)
+                .HasForeignKey(s => s.UserID);
+
+            modelBuilder.Entity<UserInfo>()
+                .HasMany(u => u.Reviews)
+                .WithOne(r => r.UserInfo)
+                .HasForeignKey(r => r.UserID);
+
+            modelBuilder.Entity<UserInfo>()
+                .HasMany(u => u.Surveys)
+                .WithOne(s => s.UserInfo)
+                .HasForeignKey(s => s.UserID);
+
             base.OnModelCreating(modelBuilder);
         }
     }
