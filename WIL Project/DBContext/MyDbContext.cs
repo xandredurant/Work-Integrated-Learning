@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Configuration;
+using WIL_Project.Models;
 
 namespace WIL_Project.DBContext
 {
-    public class DBContext
+    public class MyDbContext : DbContext
     {
-        public DbContext(DbContextOptions<DbContext> options) : base(options)
+        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
         }
 

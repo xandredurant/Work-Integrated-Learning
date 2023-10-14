@@ -1,14 +1,16 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WIL_Project.Areas.Identity.Data;
+using WIL_Project.DBContext;
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("MySqlConnection") ?? throw new InvalidOperationException("Connection string 'MySqlConnection' not found.");
 
-builder.Services.AddDbContext<DBContextSample>(options =>
+builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<SampleUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<DBContextSample>();
+    .AddEntityFrameworkStores<MyDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -23,8 +25,7 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
