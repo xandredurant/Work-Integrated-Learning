@@ -1,7 +1,13 @@
-﻿namespace WIL_Project.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+
+namespace WIL_Project.Models
 {
+    [Table("EventInformation")]
     public class EventInformation
     {
+        [Key]
         public int EventID { get; set; }
         public string EventName { get; set; }
         public DateTime EventDate { get; set; }
