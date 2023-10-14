@@ -44,13 +44,19 @@ namespace WIL_Project.DBContext
             // Define the primary key for UserInfo
             modelBuilder.Entity<UserInfo>().HasKey(u => u.UserID);
 
-            // Define relationships and constraints here if needed
-            modelBuilder.Entity<SessionInformation>()
-                .HasOne(s => s.EventInformation)
-                .WithMany(e => e.Sessions)
-                .HasForeignKey(s => s.EventID);
+            // Define relationships and constraints
+            modelBuilder.Entity<DiscountVoucher>()
+                .HasOne(d => d.DiscountVoucherRedemption)
+                .WithMany(d => d.DiscountVouchers);
 
-            // Add other relationships and constraints as needed
+            modelBuilder.Entity<DiscountVoucheRedemption>()
+                .HasForeignKey(d => d.UserID);
+
+            modelBuilder.Entity<DiscountVoucheRedemption>()
+                .HasForeignKey(d => d.UserID);
+
+            modelBuilder.Entity<DiscountVoucheRedemption>()
+                .HasForeignKey(d => d.Code);
         }
     }
 }
