@@ -1,6 +1,6 @@
 ﻿namespace WIL_Project.Models
 {
-    public class DiscountAndVoucher
+    public class DiscountVoucher
     {
         public string Code { get; set; }
         public string DiscountType { get; set; }
