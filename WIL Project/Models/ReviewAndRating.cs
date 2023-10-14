@@ -1,6 +1,6 @@
 ﻿namespace WIL_Project.Models
 {
-    public class ReviewAndRating
+    public class ReviewRating
     {
         public int ReviewID { get; set; }
         public int EventID { get; set; }
