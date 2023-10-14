@@ -48,42 +48,6 @@ namespace WIL_Project.DBContext
 
             // Define the primary key for UserInfo
             modelBuilder.Entity<UserInfo>().HasKey(u => u.UserID);
-
-            modelBuilder.Entity<DiscountVoucher>()
-                .HasMany(d => d.Redemptions)
-                .WithOne(r => r.DiscountVoucher)
-                .HasForeignKey(r => r.Code);
-
-            modelBuilder.Entity<DiscountVoucherRedemption>()
-                .HasKey(dvr => new { dvr.RedemptionID, dvr.UserID });
-
-            modelBuilder.Entity<SessionInformation>()
-                .HasMany(s => s.Surveys)
-                .WithOne(survey => survey.SessionInformation)
-                .HasForeignKey(survey => survey.SessionID);
-
-            modelBuilder.Entity<ReviewRating>()
-                .HasOne(r => r.EventInformation)
-                .WithMany(e => e.Reviews)
-                .HasForeignKey(r => r.EventID);
-
-            modelBuilder.Entity<SessionInformation>()
-                .HasOne(s => s.EventInformation)
-                .WithMany(e => e.Sessions)
-                .HasForeignKey(s => s.EventID);
-
-            modelBuilder.Entity<EventInformation>()
-                .HasMany(e => e.Surveys)
-                .WithOne(survey => survey.EventInformation)
-                .HasForeignKey(survey => survey.EventID);
-
-            modelBuilder.Entity<EventInformation>()
-                .HasMany(e => e.Reviews)
-                .WithOne(review => review.EventInformation)
-                .HasForeignKey(review => review.EventID);
-
-            base.OnModelCreating(modelBuilder);
         }
-
     }
 }
