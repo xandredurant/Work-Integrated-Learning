@@ -2,49 +2,48 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WIL_Project.Areas.Identity.Data;
-using WIL_Project.Models;
+using WIL_Project.Models; // Add this using directive
 
-namespace WIL_Project.Controllers
+[Route("Login")]
+public class LoginController : Controller
 {
-    public class LoginController : Controller
+    private readonly SignInManager<SampleUser> _signInManager;
+
+    public LoginController(SignInManager<SampleUser> signInManager)
     {
-        private readonly SignInManager<SampleUser> _signInManager;
+        _signInManager = signInManager;
+    }
 
-        public LoginController(SignInManager<SampleUser> signInManager)
-        {
-            _signInManager = signInManager;
-        }
+    [HttpGet]
+    [Route("")]
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-        [HttpGet]
-        public IActionResult Index()
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Route("")]
+    public async Task<IActionResult> Index(LoginModel model)
+    {
+        if (ModelState.IsValid)
         {
-            return View();
-        }
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(LoginModel model)
-        {
-            if (ModelState.IsValid)
+            if (result.Succeeded)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-
-                if (result.Succeeded)
-                {
-                    // Successfully logged in
-                    return RedirectToAction("Index", "Home");
-                }
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                // Successfully logged in
+                return RedirectToAction("Index", "Home");
             }
-            return View(model);
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
         }
+        return View(model);
+    }
 
-        public async Task<IActionResult> Logout()
-        {
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
-        }
-
+    [Route("Logout")]
+    public IActionResult Logout()
+    {
+        _signInManager.SignOutAsync();
+        return RedirectToAction("Index", "Home");
     }
 }
-
