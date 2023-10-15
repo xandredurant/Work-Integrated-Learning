@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WIL_Project.Areas.Identity.Data;
-using WIL_Project.DBContext; // Add the appropriate using statement for your DbContext
-using Microsoft.Extensions.Configuration; // Add the using statement for Configuration
+using WIL_Project.DBContext;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
@@ -33,6 +34,17 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// Add this part to configure routing for your login and registration controllers
+app.MapControllerRoute(
+    name: "login",
+    pattern: "Login/{action=Index}/{id?}",
+    defaults: new { controller = "Login" });
+
+app.MapControllerRoute(
+    name: "register",
+    pattern: "Register/{action=Index}/{id?}",
+    defaults: new { controller = "Register" });
 
 app.MapRazorPages();
 

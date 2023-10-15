@@ -1,50 +1,50 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using WIL_Project.Areas.Identity.Data;
-using WIL_Project.Models;
+using WIL_Project.Models; // Add this using directive
 
-namespace WIL_Project.Controllers
+[Route("Register")]
+public class RegisterController : Controller
 {
-    public class RegisterController : Controller
+    private readonly UserManager<SampleUser> _userManager;
+    private readonly SignInManager<SampleUser> _signInManager;
+
+    public RegisterController(UserManager<SampleUser> userManager, SignInManager<SampleUser> signInManager)
     {
-        private readonly UserManager<SampleUser> _userManager;
-        private readonly SignInManager<SampleUser> _signInManager;
+        _userManager = userManager;
+        _signInManager = signInManager;
+    }
 
-        public RegisterController(UserManager<SampleUser> userManager, SignInManager<SampleUser> signInManager)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-        }
+    [HttpGet]
+    [Route("")]
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-        [HttpGet]
-        public IActionResult Index()
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Route("")]
+    public async Task<IActionResult> Index(RegisterModel model)
+    {
+        if (ModelState.IsValid)
         {
-            return View();
-        }
+            var user = new SampleUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(RegisterModel model)
-        {
-            if (ModelState.IsValid)
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
             {
-                var user = new SampleUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
-
-                var result = await _userManager.CreateAsync(user, model.Password);
-
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return RedirectToAction("Index", "Home");
             }
-            return View(model);
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
         }
+        return View(model);
     }
 }
