@@ -11,7 +11,7 @@ namespace WIL_Project.DBContext
         {
         }
 
-    public DbSet<EventInformation> EventInformation { get; set; }
+        public DbSet<EventInformation> EventInformation { get; set; }
         public DbSet<SessionInformation> SessionInformation { get; set; }
         public DbSet<SpeakerInformation> SpeakerInformation { get; set; }
         public DbSet<UserInfo> UserInfo { get; set; }
