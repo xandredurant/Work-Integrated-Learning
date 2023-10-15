@@ -8,9 +8,9 @@ namespace WIL_Project.Controllers
 {
     public class EventsController : Controller
     {
-        private readonly MyDbContext _dbContext;
+        private readonly DBContext.MyDbContext _dbContext;
 
-        public EventsController(MyDbContext dbContext)
+        public EventsController(DBContext.MyDbContext dbContext)
         {
             _dbContext = dbContext;
         }
