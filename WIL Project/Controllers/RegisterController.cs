@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using WIL_Project.Areas.Identity.Data;
-using WIL_Project.Models; // Add this using directive
+using WIL_Project.Models;
 
-[Route("Register")]
 public class RegisterController : Controller
 {
     private readonly UserManager<SampleUser> _userManager;
@@ -17,7 +16,6 @@ public class RegisterController : Controller
     }
 
     [HttpGet]
-    [Route("")]
     public IActionResult Index()
     {
         return View();
@@ -25,7 +23,6 @@ public class RegisterController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    [Route("")]
     public async Task<IActionResult> Index(RegisterModel model)
     {
         if (ModelState.IsValid)
