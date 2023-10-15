@@ -10,6 +10,7 @@ namespace WIL_Project.Models
         [Key]
         public string Code { get; set; }
         public string DiscountType { get; set; }
+        public string Visibility { get; set; }
         public DateTime ValidFrom { get; set; }
         public DateTime ValidTo { get; set; }
         public int LimitPerUser { get; set; }
