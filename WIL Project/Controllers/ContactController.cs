@@ -47,7 +47,7 @@ public class ContactController : Controller
             }
 
             // Email sent successfully, so display the success view.
-            return RedirectToAction("Contact");
+            return View("Success");
         }
         catch (Exception ex)
         {
