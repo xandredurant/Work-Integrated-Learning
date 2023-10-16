@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Net;
 using System.Net.Mail;
 
@@ -22,27 +23,39 @@ public class ContactController : Controller
     {
         var emailSettings = _configuration.GetSection("EmailSettings");
 
-        var message = new MailMessage
+        try
         {
-            From = new MailAddress(emailSettings["UserName"]),
-            Subject = "Contact Form Submission",
-            Body = $"Name: {FirstName} {LastName}\nEmail: {Email}\nIssue: {Issue}\nExperience: {Experience}",
-            IsBodyHtml = false,
-        };
+            using (var smtpClient = new SmtpClient
+            {
+                Host = emailSettings["SmtpServer"],
+                Port = int.Parse(emailSettings["Port"]),
+                Credentials = new NetworkCredential(emailSettings["UserName"], emailSettings["Password"]),
+                EnableSsl = true,
+            })
+            {
+                var message = new MailMessage
+                {
+                    From = new MailAddress(emailSettings["UserName"]),
+                    Subject = "Contact Form Submission",
+                    Body = $"Name: {FirstName} {LastName}\nEmail: {Email}\nIssue: {Issue}\nExperience: {Experience}",
+                    IsBodyHtml = false,
+                };
 
-        message.To.Add("Janderik03@gmail.com"); // Replace with your recipient email address
+                message.To.Add("Janderik03@gmail.com"); // Replace with your recipient email address
 
-        var smtpClient = new SmtpClient
+                smtpClient.Send(message);
+            }
+        }
+        catch (Exception ex)
         {
-            Host = emailSettings["SmtpServer"],
-            Port = int.Parse(emailSettings["Port"]),
-            Credentials = new NetworkCredential(emailSettings["UserName"], emailSettings["Password"]),
-            EnableSsl = true,
-        };
+            // Handle exceptions, log them, and display an error message to the user if needed.
+            // Example: TempData["ErrorMessage"] = "An error occurred while sending the email.";
+            // Log the exception (ex) for debugging.
 
-        smtpClient.Send(message);
+            return RedirectToAction("Contact"); // Redirect back to the contact page or an error page.
+        }
 
-        // You can add additional logic here, like displaying a success message
-        return View("Success"); // Create a Success view in your Views folder
+        // Email sent successfully, so display the success view.
+        return View("Success");
     }
 }
