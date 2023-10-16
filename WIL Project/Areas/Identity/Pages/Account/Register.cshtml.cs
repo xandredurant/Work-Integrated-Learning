@@ -130,7 +130,8 @@ namespace WIL_Project.Areas.Identity.Pages.Account
                     UserName = Input.Username,
                     Email = Input.Email,
                     Firstname = Input.FirstName,
-                    Lastname = Input.LastName
+                    Lastname = Input.LastName,
+                    Role = "User"
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
