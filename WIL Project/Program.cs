@@ -46,6 +46,12 @@ app.MapControllerRoute(
     pattern: "Register/{action=Index}/{id?}",
     defaults: new { controller = "Register" });
 
+app.MapControllerRoute(
+    name: "submit",
+    pattern: "Home/SubmitMessage",
+    defaults: new { controller = "Contact", action = "SubmitMessage" });
+
+
 app.MapRazorPages();
 
 app.Run();
