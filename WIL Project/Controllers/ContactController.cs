@@ -3,11 +3,11 @@ using Microsoft.Extensions.Configuration;
 using System.Net;
 using System.Net.Mail;
 
-public class HomeController : Controller
+public class ContactController : Controller
 {
     private readonly IConfiguration _configuration;
 
-    public HomeController(IConfiguration configuration)
+    public ContactController(IConfiguration configuration)
     {
         _configuration = configuration;
     }
