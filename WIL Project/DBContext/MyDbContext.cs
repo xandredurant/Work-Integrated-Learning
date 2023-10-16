@@ -4,7 +4,7 @@ using WIL_Project.Models;
 
 namespace WIL_Project.DBContext
 {
-    public class MyDbContext : DbContext
+    public class MyDbContext : IdentityDbContext<UserInfo>
     {
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
@@ -13,7 +13,6 @@ namespace WIL_Project.DBContext
         public DbSet<EventInformation> EventInformation { get; set; }
         public DbSet<SessionInformation> SessionInformation { get; set; }
         public DbSet<SpeakerInformation> SpeakerInformation { get; set; }
-        public DbSet<UserInfo> UserInfo { get; set; }
         public DbSet<DiscountVoucher> DiscountVoucher { get; set; }
         public DbSet<DiscountVoucherRedemption> DiscountVoucherRedemption { get; set; }
         public DbSet<ReviewRating> ReviewRating { get; set; }
@@ -44,10 +43,18 @@ namespace WIL_Project.DBContext
             // Define the primary key for Survey
             modelBuilder.Entity<Survey>().HasKey(s => s.SurveyID);
 
-            // Define the primary key for UserInfo
-            modelBuilder.Entity<UserInfo>().HasKey(u => u.Id);
-
             // Add any additional configuration or relationships for your entities here.
+            modelBuilder.Entity<SessionInformation>()
+        .HasOne(si => si.EventInformation)
+        .WithMany(ei => ei.Sessions)
+        .HasForeignKey(si => si.EventID)
+        .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ReviewRating>()
+                .HasOne(rr => rr.SessionInformation)
+                .WithMany(si => si.ReviewRatings)
+                .HasForeignKey(rr => rr.SessionID)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

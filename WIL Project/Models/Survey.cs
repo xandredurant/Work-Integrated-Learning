@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace WIL_Project.Models
 {
@@ -15,7 +15,7 @@ namespace WIL_Project.Models
         [ForeignKey("SessionInformation")]
         public int SessionID { get; set; }
         [ForeignKey("UserInfo")]
-        public int UserID { get; set; }
+        public String Id { get; set; }
         public string SurveyResponses { get; set; }
 
         // Navigation properties for related event, session, and user

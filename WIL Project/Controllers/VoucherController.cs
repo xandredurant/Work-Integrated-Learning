@@ -41,7 +41,7 @@ namespace WIL_Project.Controllers
                 // Create a redemption entry
                 var redemption = new DiscountVoucherRedemption
                 {
-                    UserID = 1, // Replace with the actual user ID
+                    Id = "1", // Replace with the actual user ID
                     Code = voucherCode,
                     RedemptionDate = DateTime.Now
                 };

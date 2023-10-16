@@ -26,7 +26,7 @@ public class LoginController : Controller
     {
         if (ModelState.IsValid)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _userManager.FindByNameAsync(model.UserName);
             if (user != null)
             {
                 var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);

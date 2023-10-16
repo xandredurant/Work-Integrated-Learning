@@ -10,7 +10,7 @@ namespace WIL_Project.Models
         [Key]
         public int RedemptionID { get; set; }
         [ForeignKey("UserInfo")]
-        public int UserID { get; set; }
+        public string Id { get; set; }
         [ForeignKey("DiscountVoucher")]
         public string Code { get; set; }
         public DateTime RedemptionDate { get; set; }
