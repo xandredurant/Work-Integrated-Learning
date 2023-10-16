@@ -48,8 +48,8 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "submit",
-    pattern: "Home/SubmitMessage",
-    defaults: new { controller = "Contact", action = "SubmitMessage" });
+    pattern: "Home/Success",
+    defaults: new { controller = "Contact", action = "Success" });
 
 
 app.MapRazorPages();
