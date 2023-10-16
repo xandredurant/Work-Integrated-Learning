@@ -18,23 +18,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using WIL_Project.Areas.Identity.Data;
+using WIL_Project.Models;
 
 namespace WIL_Project.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<SampleUser> _signInManager;
-        private readonly UserManager<SampleUser> _userManager;
-        private readonly IUserStore<SampleUser> _userStore;
-        private readonly IUserEmailStore<SampleUser> _emailStore;
+        private readonly SignInManager<UserInfo> _signInManager;
+        private readonly UserManager<UserInfo> _userManager;
+        private readonly IUserStore<UserInfo> _userStore;
+        private readonly IUserEmailStore<UserInfo> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<SampleUser> userManager,
-            IUserStore<SampleUser> userStore,
-            SignInManager<SampleUser> signInManager,
+            UserManager<UserInfo> userManager,
+            IUserStore<UserInfo> userStore,
+            SignInManager<UserInfo> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -106,6 +106,10 @@ namespace WIL_Project.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Username")]
+            public string Username { get; set; }
         }
 
 
@@ -121,12 +125,12 @@ namespace WIL_Project.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new SampleUser
+                var user = new UserInfo
                 {
-                    UserName = Input.Email,
+                    UserName = Input.Username,
                     Email = Input.Email,
-                    FirstName = Input.FirstName,
-                    LastName = Input.LastName
+                    Firstname = Input.FirstName,
+                    Lastname = Input.LastName
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -168,27 +172,27 @@ namespace WIL_Project.Areas.Identity.Pages.Account
         }
 
 
-        private SampleUser CreateUser()
+        private UserInfo CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<SampleUser>();
+                return Activator.CreateInstance<UserInfo>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(SampleUser)}'. " +
-                    $"Ensure that '{nameof(SampleUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(UserInfo)}'. " +
+                    $"Ensure that '{nameof(UserInfo)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-        private IUserEmailStore<SampleUser> GetEmailStore()
+        private IUserEmailStore<UserInfo> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<SampleUser>)_userStore;
+            return (IUserEmailStore<UserInfo>)_userStore;
         }
     }
 }

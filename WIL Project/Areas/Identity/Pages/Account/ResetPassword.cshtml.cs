@@ -11,15 +11,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using WIL_Project.Areas.Identity.Data;
+using WIL_Project.Models;
 
 namespace WIL_Project.Areas.Identity.Pages.Account
 {
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<SampleUser> _userManager;
+        private readonly UserManager<UserInfo> _userManager;
 
-        public ResetPasswordModel(UserManager<SampleUser> userManager)
+        public ResetPasswordModel(UserManager<UserInfo> userManager)
         {
             _userManager = userManager;
         }

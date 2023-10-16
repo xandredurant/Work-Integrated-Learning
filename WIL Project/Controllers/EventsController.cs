@@ -19,6 +19,7 @@ namespace WIL_Project.Controllers
         {
             var eventsWithReviews = _dbContext.EventInformation
                 .Include(e => e.Reviews)
+                    .ThenInclude(r => r.UserInfo)
                 .ToList();
 
             // Load related UserInfo for each review
@@ -26,7 +27,10 @@ namespace WIL_Project.Controllers
             {
                 foreach (var review in ev.Reviews)
                 {
-                    _dbContext.Entry(review).Reference(r => r.UserInfo).Load();
+                    if (review.UserInfo != null)
+                    {
+                        _dbContext.Entry(review).Reference(r => r.UserInfo).Load();
+                    }
                 }
             }
 

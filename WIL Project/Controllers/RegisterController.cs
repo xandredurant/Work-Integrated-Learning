@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
-using WIL_Project.Areas.Identity.Data;
 using WIL_Project.Models;
 
 public class RegisterController : Controller
 {
-    private readonly UserManager<SampleUser> _userManager;
-    private readonly SignInManager<SampleUser> _signInManager;
+    private readonly UserManager<UserInfo> _userManager;
+    private readonly SignInManager<UserInfo> _signInManager;
 
-    public RegisterController(UserManager<SampleUser> userManager, SignInManager<SampleUser> signInManager)
+    public RegisterController(UserManager<UserInfo> userManager, SignInManager<UserInfo> signInManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -27,7 +26,7 @@ public class RegisterController : Controller
     {
         if (ModelState.IsValid)
         {
-            var user = new SampleUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+            var user = new UserInfo { UserName = model.Username, Email = model.Email, Firstname = model.FirstName, Lastname = model.LastName };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 

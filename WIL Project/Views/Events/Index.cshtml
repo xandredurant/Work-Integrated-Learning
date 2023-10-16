@@ -34,19 +34,27 @@
                         <div class="event-reviews" id="reviews@ev.EventID">
                             <h2 class="reviews-title">Event Reviews</h2>
 
-                            @foreach (var review in ev.Reviews)
+                            @if (ev.Reviews != null)
                             {
-                                <div class="review">
-                                    <div class="review-header">
-                                        <span class="review-author">@review.UserInfo.Username</span>
-                                        <span class="review-rating">Rating: @review.Rating/5</span>
+                                @foreach (var review in ev.Reviews)
+                                {
+                                    <div class="review">
+                                        <div class="review-header">
+                                            <span class="review-author">@review.UserInfo?.UserName</span>
+                                            <span class="review-rating">Rating: @review.Rating/5</span>
+                                        </div>
+                                        <p class="review-text">@review.ReviewText</p>
                                     </div>
-                                    <p class="review-text">@review.ReviewText</p>
-                                </div>
+                                }
+                            }
+                            else
+                            {
+                                <p>No reviews available for this event.</p>
                             }
                         </div>
                     </div>
                 }
+
             </div>
         </section>
     </main>

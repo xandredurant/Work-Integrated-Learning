@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using WIL_Project.Areas.Identity.Data;
 using WIL_Project.Models;
 
 public class LoginController : Controller
 {
-    private readonly UserManager<SampleUser> _userManager;
-    private readonly SignInManager<SampleUser> _signInManager;
+    private readonly UserManager<UserInfo> _userManager;
+    private readonly SignInManager<UserInfo> _signInManager;
 
-    public LoginController(UserManager<SampleUser> userManager, SignInManager<SampleUser> signInManager)
+    public LoginController(UserManager<UserInfo> userManager, SignInManager<UserInfo> signInManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;

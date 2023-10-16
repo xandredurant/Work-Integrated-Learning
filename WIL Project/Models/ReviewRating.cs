@@ -14,7 +14,7 @@ namespace WIL_Project.Models
         [ForeignKey("SessionInformation")]
         public int SessionID { get; set; }
         [ForeignKey("UserInfo")]
-        public int UserID { get; set; }
+        public int Id { get; set; }
         public int Rating { get; set; }
         public string ReviewText { get; set; }
         public DateTime ReviewDate { get; set; }
@@ -22,6 +22,7 @@ namespace WIL_Project.Models
         // Navigation properties for related event, session, and user
         public EventInformation EventInformation { get; set; }
         public SessionInformation SessionInformation { get; set; }
+        [ForeignKey("Id")]
         public UserInfo UserInfo { get; set; }
     }
 }

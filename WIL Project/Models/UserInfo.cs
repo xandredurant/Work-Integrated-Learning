@@ -1,15 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-
+using Microsoft.AspNetCore.Identity;
 namespace WIL_Project.Models
 {
     [Table("UserInfo")]
-    public class UserInfo
+    public class UserInfo : IdentityUser<string>
     {
         [Key]
-        public int UserID { get; set; }
-        public string Username { get; set; }
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
         public byte[] PasswordHash { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }

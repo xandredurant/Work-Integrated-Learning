@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using WIL_Project.Areas.Identity.Data;
 using WIL_Project.Models;
 
 namespace WIL_Project.DBContext
 {
-    public class MyDbContext : IdentityDbContext<SampleUser>
+    public class MyDbContext : DbContext
     {
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
@@ -46,7 +45,7 @@ namespace WIL_Project.DBContext
             modelBuilder.Entity<Survey>().HasKey(s => s.SurveyID);
 
             // Define the primary key for UserInfo
-            modelBuilder.Entity<UserInfo>().HasKey(u => u.UserID);
+            modelBuilder.Entity<UserInfo>().HasKey(u => u.Id);
 
             // Add any additional configuration or relationships for your entities here.
         }
