@@ -47,7 +47,7 @@ public class ContactController : Controller
             }
 
             // Email sent successfully, so display the success view.
-            return View("Success");
+            return View("Views/Home/Success");
         }
         catch (Exception ex)
         {
