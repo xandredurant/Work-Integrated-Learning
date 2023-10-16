@@ -15,7 +15,7 @@ public class ContactController : Controller
 
     public IActionResult Contact()
     {
-        return View("Contact"); // This method is for displaying the Contact view.
+        return View("contact"); // This method is for displaying the Contact view.
     }
 
     [HttpPost]
