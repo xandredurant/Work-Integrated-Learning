@@ -45,6 +45,9 @@ public class ContactController : Controller
 
                 smtpClient.Send(message);
             }
+
+            // Email sent successfully, so display the success view.
+            return View("Success");
         }
         catch (Exception ex)
         {
@@ -54,8 +57,6 @@ public class ContactController : Controller
 
             return RedirectToAction("Contact"); // Redirect back to the contact page or an error page.
         }
-
-        // Email sent successfully, so display the success view.
-        return View("Success");
     }
+
 }
