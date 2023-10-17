@@ -3,12 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/schedule.css" asp-append-version="true" />
-    <title>Schedule</title>
+    <!-- ... rest of the head section ... -->
 </head>
 <body class="schedule">
     <h2 style="text-align:center; padding-top:40px;">Event Schedule</h2>
@@ -21,22 +16,29 @@
             <div class="row">
                 <div class="col-lg-13" style="width:93%;">
                     <div class="row grid">
-                        @foreach (var eventInfo in Model)
+                        @if (Model != null && Model.Count > 0)
                         {
-                            <div class="col-lg-4 lebo-item-col all @eventInfo.EventType.ToLower()">
-                                <div class="meeting-item">
-                                    <div class="thumb">
-                                        <a href="meeting-details.html"><img src="~/images/meeting-01.jpg" alt=""></a>
-                                    </div>
-                                    <div class="down-content">
-                                        <div class="date">
-                                            <h6>@eventInfo.EventDate.ToString("MMM d")</h6>
+                            @foreach (var eventInfo in Model)
+                            {
+                                <div class="col-lg-4 lebo-item-col all @eventInfo.EventType.ToLower()">
+                                    <div class="meeting-item">
+                                        <div class="thumb">
+                                            <a href="meeting-details.html"><img src="~/images/meeting-01.jpg" alt=""></a>
                                         </div>
-                                        <a href="meeting-details.html"><h4>@eventInfo.EventName</h4></a>
-                                        <p>@eventInfo.EventDescription</p>
+                                        <div class="down-content">
+                                            <div class="date">
+                                                <h6>@eventInfo.EventDate.ToString("MMM d")</h6>
+                                            </div>
+                                            <a href="meeting-details.html"><h4>@eventInfo.EventName</h4></a>
+                                            <p>@eventInfo.EventDescription</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>No events found.</p>
                         }
                     </div>
                 </div>
