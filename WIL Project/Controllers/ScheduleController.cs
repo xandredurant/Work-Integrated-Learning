@@ -6,11 +6,11 @@ using WIL_Project.DBContext;
 
 namespace WIL_Project.Controllers
 {
-    public class EventController : Controller
+    public class ScheduleController : Controller
     {
         private readonly MyDbContext _context;
 
-        public EventController(MyDbContext context)
+        public ScheduleController(MyDbContext context)
         {
             _context = context;
         }
