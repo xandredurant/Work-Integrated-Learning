@@ -18,4 +18,5 @@ public class ScheduleController : Controller
         var events = await _context.EventInformation.ToListAsync();
         return View(events);
     }
+
 }
