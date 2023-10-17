@@ -51,6 +51,33 @@
                             {
                                 <p>No reviews available for this event.</p>
                             }
+
+                            <div class="add-review-form" style="display: none;">
+                                <form method="post" asp-action="AddReview" asp-route-eventId="@ev.EventID">
+                                    <h2>Add Review</h2>
+                                    <div class="form-group">
+                                        <label for="Rating">Rating:</label>
+                                        <input type="number" class="form-control" name="Rating" id="Rating" min="1" max="5" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="SessionId">Select a Session:</label>
+                                        <select class="form-control" name="SessionId" id="SessionId" required>
+                                            <option value="">-- Select a Session --</option>
+                                            @foreach (var session in ev.Sessions)
+                                            {
+                                                <option value="@session.SessionID">@session.SessionTitle</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ReviewText">Review:</label>
+                                        <textarea class="form-control" name="ReviewText" id="ReviewText" rows="4" required></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                                </form>
+                            </div>
+                            <button class="toggle-review-form btn btn-primary" data-eventid="@ev.EventID">Leave a Review</button>
                         </div>
                     </div>
                 }
@@ -59,11 +86,11 @@
         </section>
     </main>
 
-
     <script>
         $(document).ready(function () {
             // Hide all event details and reviews initially
             $(".event-details, .event-reviews").hide();
+
 
             // Handle click events on event titles
             $(".event-title").click(function () {
@@ -73,8 +100,19 @@
                 // Toggle the visibility of event details and reviews within the clicked event
                 eventContainer.find(".event-details, .event-reviews").slideToggle();
             });
-        });
-    </script>
 
+            // Show/hide review form
+            $(".toggle-review-form").click(function () {
+                // Find the parent event container
+
+                var eventContainer = $(this).closest(".event");
+
+                // Toggle the visibility of the review form within the clicked event
+                eventContainer.find(".add-review-form").slideToggle();
+            });
+        });
+
+       
+    </script>
 </body>
 </html>

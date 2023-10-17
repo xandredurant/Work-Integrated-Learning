@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/schedule.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <title>Schedule</title>
+</head>
+<body>
+    <header class="header">
+        <h1>Event Schedule</h1>
+        <p>Check out the schedule for our upcoming events</p>
+    </header>
+
+    <section class="events">
+        <div class="container">
+            <div class="row">
+                @if (Model != null && Model.Count > 0)
+                {
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        var eventInfo = Model[i];
+                        <div class="col-lg-4 event @eventInfo.EventType.ToLower()">
+                            <div class="event-item">
+                                <div class="event-image">
+                                    <a href="meeting-details.html">
+                                        <img src="~/images/Schedule@(i + 1).png" alt="@eventInfo.EventName">
+                                    </a>
+                                </div>
+                                <div class="event-details">
+                                    <div class="event-date">
+                                        <h2>@eventInfo.EventDate.ToString("MMM d, yyyy - h:mm tt")</h2>
+                                    </div>
+                                    <a class="event-title">@eventInfo.EventName</a>
+                                    <p class="event-description">@eventInfo.EventDescription</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No events found.</p>
+                }
+            </div>
+        </div>
+    </section>
+</body>
+</html>

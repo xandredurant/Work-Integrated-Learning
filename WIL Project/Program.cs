@@ -51,6 +51,12 @@ app.MapControllerRoute(
     pattern: "Register/{action=Index}/{id?}",
     defaults: new { controller = "Register" });
 
+app.MapControllerRoute(
+    name: "schedule",
+    pattern: "Schedule",
+    defaults: new { controller = "Schedule", action = "Index" });
+
+
 app.MapRazorPages();
 
 app.Run();
