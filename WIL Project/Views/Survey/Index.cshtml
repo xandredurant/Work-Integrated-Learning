@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model WIL_Project.Models.Survey
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,101 +13,109 @@
 <body class="survey">
     <h2 style="text-align:center; padding-top:30px;">Please Fill Out This Survey</h2>
     <div style="text-align: center;">
-        <p style="text-align: center;">We as an Event Organization company would like to receive your<br /> valuable input as we are in the business of providing top service for our customers </p>
+        <p style="text-align: center;">We as an Event Organization company would like to receive your<br /> valuable input as we are in the business of providing top service for our customers</p>
     </div>
 
-
     <div class="container " style="max-width:1000px; margin-left:300px; padding-top:30px;">
-    <form class="row g-4">
-
+        <form asp-controller="Survey" asp-action="Index" method="post" class="row g-4">
             <div class="col-md-6">
-                <label for="firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                <label asp-for="FirstName" class="form-label"></label>
+                <input asp-for="FirstName" class="form-control" placeholder="First name" aria-label="First name">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label for="firstName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                <label asp-for="LastName" class="form-label"></label>
+                <input asp-for="LastName" class="form-control" placeholder="Last name" aria-label="Last name">
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
+                    <input asp-for="Email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
                     <label for="floatingInputGrid" style="color:black">Email address</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                        <option selected>Choose... </option>
+                    <select asp-for="ParticipationType" class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                        <option value="">Choose...</option>
                         <option value="1">First Time Participation</option>
                         <option value="2">Participated more than once</option>
                         <option value="3">Never Been To</option>
                     </select>
                     <label for="floatingSelectGrid" style="color:black">Participation</label>
+                    <span asp-validation-for="ParticipationType" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-md-12">
-                <label for="exampleFormControlTextarea1" class="form-label">Tell us about your experience</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                <label asp-for="ExperienceText" class="form-label"></label>
+                <textarea asp-for="ExperienceText" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="ExperienceText" class="text-danger"></span>
             </div>
-            
+
             <div class="col-md-6">
-                <label for="inputState" class="form-label">Overall, Rate the Event</label>
-                <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
+                <label asp-for="EventRating" class="form-label"></label>
+                <select asp-for="EventRating" class="form-select">
+                    <option value="">Choose...</option>
                     <option value="1">Excellent</option>
                     <option value="2">Very Good</option>
                     <option value="3">Good</option>
                     <option value="4">Fair</option>
                     <option value="5">Poor</option>
                 </select>
+                <span asp-validation-for="EventRating" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label for="inputState" class="form-label">How helpful were the staff</label>
-                <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
+                <label asp-for="StaffRating" class="form-label"></label>
+                <select asp-for="StaffRating" class="form-select">
+                    <option value="">Choose...</option>
                     <option value="1">Excellent Service</option>
                     <option value="2">Good Service</option>
-                    <option value="3">Average Sercive</option>
+                    <option value="3">Average Service</option>
                     <option value="4">Bad Service</option>
                 </select>
+                <span asp-validation-for="StaffRating" class="text-danger"></span>
             </div>
             <div class="col-md-12">
-                <label for="exampleFormControlTextarea1" class="form-label">What did you dislike about the event</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                <label asp-for="Dislikes" class="form-label"></label>
+                <textarea asp-for="Dislikes" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Dislikes" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label for="inputState" class="form-label">Would you recommend the event to someone else</label>
-                <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
+                <label asp-for="ReccomendEvent" class="form-label"></label>
+                <select asp-for="ReccomendEvent" class="form-select">
+                    <option value="">Choose...</option>
                     <option value="1">Yes</option>
                     <option value="2">50/50</option>
                     <option value="3">No</option>
                 </select>
+                <span asp-validation-for="ReccomendEvent" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label for="inputState" class="form-label">How did you find out about us</label>
-                <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
+                <label asp-for="HowFoundOut" class="form-label"></label>
+                <select asp-for="HowFoundOut" class="form-select">
+                    <option value="">Choose...</option>
                     <option value="1">Marketing</option>
                     <option value="2">Word of Mouth</option>
                     <option value="3">Colleagues</option>
                     <option value="4">Family and Friends</option>
                     <option value="5">Other</option>
                 </select>
+                <span asp-validation-for="HowFoundOut" class="text-danger"></span>
             </div>
             <div class="col-12">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <input asp-for="AgreeToTerms" class="form-check-input" type="checkbox" id="gridCheck">
                     <label class="form-check-label" for="gridCheck">
                         Agree to the terms and Conditions
                     </label>
                 </div>
+                <span asp-validation-for="AgreeToTerms" class="text-danger"></span>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn" style="background-color:#800000; color:white">Submit Survey</button>
             </div>
-    </form>
+        </form>
     </div>
 </body>
-
 </html>
