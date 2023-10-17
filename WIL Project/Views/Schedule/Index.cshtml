@@ -1,52 +1,49 @@
-﻿@model List<WIL_Project.Models.EventInformation>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="~/css/Program.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/css/schedule.css" asp-append-version="true" />
-<title>Schedule</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/schedule.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Program.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <title>Schedule</title>
 </head>
-<body class="schedule">
-    <h2 style="text-align:center; padding-top:40px;">Event Schedule</h2>
-    <div style="text-align: center;">
-        <p style="text-align: center;">Check out the schedule for our upcoming events </p>
-    </div>
+<body>
+    <header class="header">
+        <h1>Event Schedule</h1>
+        <p>Check out the schedule for our upcoming events</p>
+    </header>
 
-    <section class="meetings-page" id="meetings" style="padding-top:20px;">
-        <div class="container" style="padding-left:60px">
+    <section class="events">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-13" style="width:93%;">
-                    <div class="row grid">
-                        @if (Model != null && Model.Count > 0)
-                        {
-                            @foreach (var eventInfo in Model)
-                            {
-                                <div class="col-lg-4 lebo-item-col all @eventInfo.EventType.ToLower()">
-                                    <div class="meeting-item">
-                                        <div class="thumb">
-                                            <a href="meeting-details.html"><img src="~/images/meeting-01.jpg" alt=""></a>
-                                        </div>
-                                        <div class="down-content">
-                                            <div class="date">
-                                                <h6>@eventInfo.EventDate.ToString("MMM d")</h6>
-                                            </div>
-                                            <a href="meeting-details.html"><h4>@eventInfo.EventName</h4></a>
-                                            <p>@eventInfo.EventDescription</p>
-                                        </div>
-                                    </div>
+                @if (Model != null && Model.Count > 0)
+                {
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        var eventInfo = Model[i];
+                        <div class="col-lg-4 event @eventInfo.EventType.ToLower()">
+                            <div class="event-item">
+                                <div class="event-image">
+                                    <a href="meeting-details.html">
+                                        <img src="~/images/Schedule@(i + 1).png" alt="@eventInfo.EventName">
+                                    </a>
                                 </div>
-                            }
-                        }
-                        else
-                        {
-                            <p>No events found.</p>
-                        }
-                    </div>
-                </div>
+                                <div class="event-details">
+                                    <div class="event-date">
+                                        <h2>@eventInfo.EventDate.ToString("MMM d, yyyy - h:mm tt")</h2>
+                                    </div>
+                                    <a class="event-title">@eventInfo.EventName</a>
+                                    <p class="event-description">@eventInfo.EventDescription</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No events found.</p>
+                }
             </div>
         </div>
     </section>
