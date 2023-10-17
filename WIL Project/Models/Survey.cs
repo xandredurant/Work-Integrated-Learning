@@ -1,26 +1,50 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WIL_Project.Models
+public class Survey
 {
-    [Table("Survey")]
-    public class Survey
-    {
-        [Key]
-        public int SurveyID { get; set; }
-        public string SurveyType { get; set; }
-        [ForeignKey("EventInformation")]
-        public int EventID { get; set; }
-        [ForeignKey("SessionInformation")]
-        public int SessionID { get; set; }
-        [ForeignKey("UserInfo")]
-        public String Id { get; set; }
-        public string SurveyResponses { get; set; }
+    public int SurveyID { get; set; }
 
-        // Navigation properties for related event, session, and user
-        public EventInformation EventInformation { get; set; }
-        public SessionInformation SessionInformation { get; set; }
-        public UserInfo UserInfo { get; set; }
-    }
+    [Required]
+    [Display(Name = "First Name")]
+    public string FirstName { get; set; }
+
+    [Required]
+    [Display(Name = "Last Name")]
+    public string LastName { get; set; }
+
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; }
+
+    [Required]
+    [Display(Name = "Participation Type")]
+    public string ParticipationType { get; set; }
+
+    [Required]
+    [Display(Name = "Experience")]
+    public string ExperienceText { get; set; }
+
+    [Required]
+    [Display(Name = "Event Rating")]
+    public string EventRating { get; set; }
+
+    [Required]
+    [Display(Name = "Staff Rating")]
+    public string StaffRating { get; set; }
+
+    [Required]
+    [Display(Name = "Dislikes")]
+    public string Dislikes { get; set; }
+
+    [Required]
+    [Display(Name = "Recommend Event")]
+    public string ReccomendEvent { get; set; }
+
+    [Required]
+    [Display(Name = "How Did You Find Out")]
+    public string HowFoundOut { get; set; }
+
+    [Required]
+    [Display(Name = "Agree to Terms and Conditions")]
+    public bool AgreeToTerms { get; set; }
 }
