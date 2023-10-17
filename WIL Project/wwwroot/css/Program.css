@@ -89,28 +89,37 @@
     background-color: var(--primary-color);
     color: #fff;
     padding: 20px;
-    margin-top: 50px;
     display: flex;
     flex-wrap: wrap; /* Allow them to wrap to the next line if needed */
     gap: 20px; /* Gap between program entries */
 }
 
-.program {
-    border: 1px solid var(--secondary-color);
-    border-radius: 5px;
-    flex: 1; /* Equal width for all program entries */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    #program-schedule h2 {
+        margin-bottom: 10px; /* Add some space below the heading */
+    }
+
+.sessions {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Use flexbox to display list items horizontally */
+    flex-wrap: wrap; /* Wrap items to the next row if they don't fit */
+    gap: 20px; /* Gap between items */
+    justify-content: space-between; /* Space items evenly along the row */
 }
 
-    .program h3.program-name {
+.programs {
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    width:500px;
+    margin-bottom:10px;
+}
+
+    .programs h3.program-name {
         margin: 0;
-        flex: 1;
         font-weight: bold;
     }
 
-    .program button.show-details {
+    .programs button.show-details {
         background-color: var(--accent-color-2);
         color: #fff;
         border: none;
@@ -120,10 +129,12 @@
         align-self: flex-start; /* Align the button to the left */
         margin-top: auto; /* Push the button to the bottom */
         border-radius: 10px;
+        margin-left:5px;
+        margin-bottom:5px;
     }
 
 
-        .program button.show-details:hover {
+        .programs button.show-details:hover {
             background-color: var(--accent-color-2);
             
         }
@@ -141,4 +152,47 @@
 
     .program-details p {
         margin: 5px 0;
+    }
+
+.program-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+    .program-header .book-now{
+        margin-top:15px;
+        margin-right:10px;
+    }
+
+    .add-program-button {
+        border: none;
+        background-color: var(--secondary-color);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 16px;
+        color: white;
+        outline: none;
+        margin-top: 10px;
+        margin-left:80px;
+    }
+
+    /* Style the checkmark */
+    .add-program-button.added::before {
+        content: "\2714"; /* Unicode character for a checkmark */
+        color: black !important;
+    }
+
+    /* Style the cross */
+    .add-program-button:not(.added)::before {
+        content: "\002B";
+        color: #333;
+        font-size: 24px;
+        margin-top:-3px;
     }
