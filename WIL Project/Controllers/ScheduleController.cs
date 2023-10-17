@@ -16,14 +16,8 @@ namespace WIL_Project.Controllers
 
         public IActionResult Index()
         {
-            var events = _context.EventInformation.ToList(); // Fetch all events from the database
-
-            // Log the count of events
-            Console.WriteLine("Event Count: " + events.Count);
-
+            var events = _context.EventInformation.Take(9).ToList(); // Fetch the first 9 events from the database
             return View(events);
         }
-
-
     }
 }
