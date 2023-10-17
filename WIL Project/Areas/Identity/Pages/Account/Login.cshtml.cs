@@ -66,6 +66,7 @@ namespace WIL_Project.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+            [Display(Name = "Username")]
             public string UserName { get; set; }
 
             /// <summary>
