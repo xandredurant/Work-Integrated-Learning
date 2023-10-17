@@ -16,17 +16,14 @@ namespace WIL_Project.Controllers
 
         public IActionResult Index()
         {
-            try
-            {
-                var events = _context.EventInformation.ToList(); // Fetch all events from the database
-                return View(events);
-            }
-            catch (Exception ex)
-            {
-                // Log or handle the exception
-                return View(new List<EventInformation>()); // Display an empty list in case of an error
-            }
+            var events = _context.EventInformation.ToList(); // Fetch all events from the database
+
+            // Log the count of events
+            Console.WriteLine("Event Count: " + events.Count);
+
+            return View(events);
         }
+
 
     }
 }
