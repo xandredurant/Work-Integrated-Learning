@@ -13,9 +13,9 @@ public class ContactController : Controller
         _configuration = configuration;
     }
 
-    public IActionResult Contact()
+    public IActionResult Index()
     {
-        return View("Views/Home/contact"); // This method is for displaying the Contact view.
+        return View(); 
     }
 
     [HttpPost]
