@@ -12,8 +12,8 @@ using WIL_Project.DBContext;
 namespace WIL_Project.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20231016124120_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231018133851_UpdatedMigration")]
+    partial class UpdatedMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -166,11 +166,11 @@ namespace WIL_Project.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicableEvents")
+                    b.Property<string>("DiscountType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DiscountType")
+                    b.Property<string>("EventID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -371,31 +371,65 @@ namespace WIL_Project.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SurveyID"), 1L, 1);
 
-                    b.Property<int>("EventID")
+                    b.Property<bool>("AgreeToTerms")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Dislikes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("EventInformationEventID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Id")
+                    b.Property<string>("EventRating")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExperienceText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HowFoundOut")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParticipationType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReccomendEvent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SessionInformationSessionID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StaffRating")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserInfoId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("SessionID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SurveyResponses")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SurveyType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SurveyID");
 
-                    b.HasIndex("EventID");
+                    b.HasIndex("EventInformationEventID");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("SessionInformationSessionID");
 
-                    b.HasIndex("SessionID");
+                    b.HasIndex("UserInfoId");
 
                     b.ToTable("Survey");
                 });
@@ -470,6 +504,27 @@ namespace WIL_Project.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("WIL_Project.Models.UserProgram", b =>
+                {
+                    b.Property<int>("SessionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SessionID"), 1L, 1);
+
+                    b.Property<string>("Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SessionID");
+
+                    b.ToTable("Sessions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -590,29 +645,17 @@ namespace WIL_Project.Migrations
 
             modelBuilder.Entity("WIL_Project.Models.Survey", b =>
                 {
-                    b.HasOne("WIL_Project.Models.EventInformation", "EventInformation")
+                    b.HasOne("WIL_Project.Models.EventInformation", null)
                         .WithMany("Surveys")
-                        .HasForeignKey("EventID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EventInformationEventID");
 
-                    b.HasOne("WIL_Project.Models.UserInfo", "UserInfo")
+                    b.HasOne("WIL_Project.Models.SessionInformation", null)
                         .WithMany("Surveys")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SessionInformationSessionID");
 
-                    b.HasOne("WIL_Project.Models.SessionInformation", "SessionInformation")
+                    b.HasOne("WIL_Project.Models.UserInfo", null)
                         .WithMany("Surveys")
-                        .HasForeignKey("SessionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EventInformation");
-
-                    b.Navigation("SessionInformation");
-
-                    b.Navigation("UserInfo");
+                        .HasForeignKey("UserInfoId");
                 });
 
             modelBuilder.Entity("WIL_Project.Models.DiscountVoucher", b =>

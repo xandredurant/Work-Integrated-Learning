@@ -13,9 +13,9 @@ namespace WIL_Project.Controllers
         SqlCommand com = new SqlCommand();
         SqlDataReader dr;
 
-        private readonly ApplicationDbContext _context;
+        private readonly MyDbContext _context;
 
-        public SessionController(ApplicationDbContext context)
+        public SessionController(MyDbContext context)
         {
             _context = context;
         }
@@ -34,7 +34,7 @@ namespace WIL_Project.Controllers
                 // Create a new session
                 var session = new UserProgram
                 {
-                    session_name = session_name,
+                    //session_name = session_name,
                     date = date
                 };
 

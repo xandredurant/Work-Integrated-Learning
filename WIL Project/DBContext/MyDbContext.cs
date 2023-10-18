@@ -9,7 +9,7 @@ namespace WIL_Project.DBContext
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
         }
-
+        public DbSet<UserProgram> Sessions { get; set; }
         public DbSet<EventInformation> EventInformation { get; set; }
         public DbSet<SessionInformation> SessionInformation { get; set; }
         public DbSet<SpeakerInformation> SpeakerInformation { get; set; }
