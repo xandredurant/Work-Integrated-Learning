@@ -18,15 +18,19 @@ namespace WIL_Project.Controllers
         }
 
         // GET: Voucher
-        public ActionResult Voucher()
+        public IActionResult Index()
         {
-            // Retrieve and pass available vouchers to the view
-            var vouchers = _context.DiscountVoucher.ToList();
-            return View(vouchers);
+            return View();
         }
 
+        public IActionResult Success()
+        {
+            return View();
+        }
+
+
         [HttpPost]
-        public ActionResult Voucher(string voucherCode)
+        public IActionResult AddVoucher(string voucherCode)
         {
             // Assuming voucherCode is submitted from the form
 
@@ -39,15 +43,10 @@ namespace WIL_Project.Controllers
                 voucher.TimesUsed++;
                 _context.SaveChanges();
 
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-                var redemptionId = Guid.NewGuid().ToString();
-
-
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 // Create a redemption entry
                 var redemption = new DiscountVoucherRedemption
                 {
-                    RedemptionID = int.Parse(redemptionId),
                     Id = userId,
                     Code = voucherCode,
                     RedemptionDate = DateTime.Now
@@ -58,12 +57,12 @@ namespace WIL_Project.Controllers
                 _context.SaveChanges();
 
                 // Optionally, you can redirect to a success page or return a success message
-                return RedirectToAction("Success", "Voucher"); // Replace with your actual action and controller
+                return RedirectToAction("Success"); // Replace with your actual action and controller
             }
 
             // Handle invalid voucher code (e.g., display an error message)
             ModelState.AddModelError("voucher-code", "Invalid voucher code");
-            return View("Index", _context.DiscountVoucher.ToList());
+            return View("Index");
         }
 
         private bool IsValidRedemption(DiscountVoucher voucher)

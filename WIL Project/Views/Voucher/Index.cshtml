@@ -33,9 +33,9 @@
     </div>
 
  <h2 style="color:white;">Redeem Vouchers</h2>
-    <form id="redeem-form" asp-controller="Voucher" asp-action="Voucher" method="post">
+    <form method="post" asp-action="AddVoucher" id="redeem-form">
         <label for="voucher-code">Enter Voucher Code:</label>
-        <input type="text" id="voucher-code" name="voucher-code" required>
+        <input type="text" id="voucher-code" name="voucherCode" required>
         <button type="submit" style="color:white; background-color:#75001e; margin-top:15px;">Redeem</button>
     </form>
 
