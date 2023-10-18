@@ -13,26 +13,15 @@
     </header>
 
     <section class="speakers">
-        <div class="speaker">
-            <img src="~/images/speaker-1.jpg" alt="Speaker 1">
-            <h2>John Doe</h2>
-            <p>CEO, Tech Inc.</p>
-            <p>Topic: Emerging Technologies</p>
-        </div>
-
-        <div class="speaker">
-            <img src="~/images/speaker-2.jpg" alt="Speaker 2">
-            <h2>Jane Smith</h2>
-            <p>Founder, CodeCrafters</p>
-            <p>Topic: Web Development Trends</p>
-        </div>
-
-        <div class="speaker">
-            <img src="~/images/speaker-3.jpg" alt="Speaker 3">
-            <h2>David Johnson</h2>
-            <p>CTO, Innovate Labs</p>
-            <p>Topic: Artificial Intelligence</p>
-        </div>
+        @foreach (var speaker in Model)
+        {
+            <div class="speaker">
+                <img src="~/images/speaker-default.jpg" alt="Speaker Image">
+                <h2>@speaker.SpeakerName</h2>
+                <p>@speaker.SpeakerAffiliation</p>
+                <p>Topic: @speaker.SpeakerTopic</p>
+            </div>
+        }
     </section>
 </body>
 </html>

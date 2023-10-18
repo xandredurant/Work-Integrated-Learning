@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WIL_Project.Models
 {
@@ -14,7 +13,6 @@ namespace WIL_Project.Models
         public string SpeakerBiography { get; set; }
         public string SpeakerTopic { get; set; }
 
-        // Navigation properties for related sessions
-        public List<SessionInformation> Sessions { get; set; }
+        // Add any navigation properties here if needed.
     }
 }
