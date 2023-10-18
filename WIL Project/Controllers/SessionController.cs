@@ -34,7 +34,7 @@ namespace WIL_Project.Controllers
                 // Create a new session
                 var session = new UserProgram
                 {
-                    session_name = session_name,
+                    //session_name = session_name,
                     date = date
                 };
 

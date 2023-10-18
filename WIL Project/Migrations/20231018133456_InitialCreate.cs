@@ -61,7 +61,7 @@ namespace WIL_Project.Migrations
                     ValidTo = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LimitPerUser = table.Column<int>(type: "int", nullable: false),
                     TimesUsed = table.Column<int>(type: "int", nullable: false),
-                    ApplicableEvents = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    EventID = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,6 +83,18 @@ namespace WIL_Project.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EventInformation", x => x.EventID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sessions",
+                columns: table => new
+                {
+                    session_name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    date = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sessions", x => x.session_name);
                 });
 
             migrationBuilder.CreateTable(
@@ -307,33 +319,39 @@ namespace WIL_Project.Migrations
                 {
                     SurveyID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SurveyType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EventID = table.Column<int>(type: "int", nullable: false),
-                    SessionID = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SurveyResponses = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ParticipationType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExperienceText = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EventRating = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StaffRating = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dislikes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReccomendEvent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HowFoundOut = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AgreeToTerms = table.Column<bool>(type: "bit", nullable: false),
+                    EventInformationEventID = table.Column<int>(type: "int", nullable: true),
+                    SessionInformationSessionID = table.Column<int>(type: "int", nullable: true),
+                    UserInfoId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Survey", x => x.SurveyID);
                     table.ForeignKey(
-                        name: "FK_Survey_AspNetUsers_Id",
-                        column: x => x.Id,
+                        name: "FK_Survey_AspNetUsers_UserInfoId",
+                        column: x => x.UserInfoId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Survey_EventInformation_EventID",
-                        column: x => x.EventID,
+                        name: "FK_Survey_EventInformation_EventInformationEventID",
+                        column: x => x.EventInformationEventID,
                         principalTable: "EventInformation",
-                        principalColumn: "EventID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "EventID");
                     table.ForeignKey(
-                        name: "FK_Survey_SessionInformation_SessionID",
-                        column: x => x.SessionID,
+                        name: "FK_Survey_SessionInformation_SessionInformationSessionID",
+                        column: x => x.SessionInformationSessionID,
                         principalTable: "SessionInformation",
-                        principalColumn: "SessionID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "SessionID");
                 });
 
             migrationBuilder.CreateIndex(
@@ -411,19 +429,19 @@ namespace WIL_Project.Migrations
                 column: "SpeakerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Survey_EventID",
+                name: "IX_Survey_EventInformationEventID",
                 table: "Survey",
-                column: "EventID");
+                column: "EventInformationEventID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Survey_Id",
+                name: "IX_Survey_SessionInformationSessionID",
                 table: "Survey",
-                column: "Id");
+                column: "SessionInformationSessionID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Survey_SessionID",
+                name: "IX_Survey_UserInfoId",
                 table: "Survey",
-                column: "SessionID");
+                column: "UserInfoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -448,6 +466,9 @@ namespace WIL_Project.Migrations
 
             migrationBuilder.DropTable(
                 name: "ReviewRating");
+
+            migrationBuilder.DropTable(
+                name: "Sessions");
 
             migrationBuilder.DropTable(
                 name: "Survey");
