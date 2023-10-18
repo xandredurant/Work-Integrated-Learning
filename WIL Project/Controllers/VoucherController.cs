@@ -43,21 +43,21 @@ namespace WIL_Project.Controllers
                 voucher.TimesUsed++;
                 _context.SaveChanges();
             }
-                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                // Create a redemption entry
-
-
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                
+            
+            // Create a redemption entry
             redemption.Id = userId;
             redemption.Code = voucherCode;
             redemption.RedemptionDate = DateTime.Now;
                 
 
-                // Add redemption entry to the database
-                _context.DiscountVoucherRedemption.Add(redemption);
-                _context.SaveChanges();
+             // Add redemption entry to the database
+             _context.DiscountVoucherRedemption.Add(redemption);
+             _context.SaveChanges();
 
-                // Optionally, you can redirect to a success page or return a success message
-                return RedirectToAction("Success"); // Replace with your actual action and controller
+            // Optionally, you can redirect to a success page or return a success message
+            return RedirectToAction("Success"); // Replace with your actual action and controller
             
 
             // Handle invalid voucher code (e.g., display an error message)
