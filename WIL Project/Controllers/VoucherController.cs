@@ -30,7 +30,7 @@ namespace WIL_Project.Controllers
 
 
         [HttpPost]
-        public IActionResult AddVoucher(string voucherCode)
+        public IActionResult AddVoucher(string voucherCode, DiscountVoucherRedemption redemption)
         {
             // Assuming voucherCode is submitted from the form
 
@@ -42,15 +42,15 @@ namespace WIL_Project.Controllers
                 // Update the voucher usage information
                 voucher.TimesUsed++;
                 _context.SaveChanges();
-
+            }
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 // Create a redemption entry
-                var redemption = new DiscountVoucherRedemption
-                {
-                    Id = userId,
-                    Code = voucherCode,
-                    RedemptionDate = DateTime.Now
-                };
+
+
+            redemption.Id = userId;
+            redemption.Code = voucherCode;
+            redemption.RedemptionDate = DateTime.Now;
+                
 
                 // Add redemption entry to the database
                 _context.DiscountVoucherRedemption.Add(redemption);
@@ -58,7 +58,7 @@ namespace WIL_Project.Controllers
 
                 // Optionally, you can redirect to a success page or return a success message
                 return RedirectToAction("Success"); // Replace with your actual action and controller
-            }
+            
 
             // Handle invalid voucher code (e.g., display an error message)
             ModelState.AddModelError("voucher-code", "Invalid voucher code");
