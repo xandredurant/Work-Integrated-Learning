@@ -37,40 +37,35 @@ namespace WIL_Project.Controllers
             // Find the voucher in the database
             var voucher = _context.DiscountVoucher.FirstOrDefault(v => v.Code == voucherCode);
 
-            if (voucher != null && IsValidRedemption(voucher))
+            if (voucher != null)
             {
                 // Update the voucher usage information
                 voucher.TimesUsed++;
                 _context.SaveChanges();
+
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+
+                // Create a redemption entry
+                redemption.Id = userId;
+                redemption.Code = voucherCode;
+                redemption.RedemptionDate = DateTime.Now;
+
+
+                // Add redemption entry to the database
+                _context.DiscountVoucherRedemption.Add(redemption);
+                _context.SaveChanges();
+
+                // Optionally, you can redirect to a success page or return a success message
+                return RedirectToAction("Success"); // Replace with your actual action and controller
             }
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                
-            
-            // Create a redemption entry
-            redemption.Id = userId;
-            redemption.Code = voucherCode;
-            redemption.RedemptionDate = DateTime.Now;
-                
-
-             // Add redemption entry to the database
-             _context.DiscountVoucherRedemption.Add(redemption);
-             _context.SaveChanges();
-
-            // Optionally, you can redirect to a success page or return a success message
-            return RedirectToAction("Success"); // Replace with your actual action and controller
-            
 
             // Handle invalid voucher code (e.g., display an error message)
             ModelState.AddModelError("voucher-code", "Invalid voucher code");
             return View("Index");
         }
 
-        private bool IsValidRedemption(DiscountVoucher voucher)
-        {
-            // Implement any additional validation logic for redemption (e.g., expiration date, user limits)
-            // Return true if the redemption is valid, otherwise return false
-            return voucher.ValidTo >= DateTime.Now && voucher.LimitPerUser > voucher.TimesUsed;
-        }
+       
 
         protected override void Dispose(bool disposing)
         {
