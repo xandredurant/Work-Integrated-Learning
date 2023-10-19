@@ -22,6 +22,7 @@ namespace WIL_Project.DBContext
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<UserProgram>().HasKey(d => d.BookingID);
             // Define the primary key for DiscountVoucher
             modelBuilder.Entity<DiscountVoucher>().HasKey(d => d.Code);
 

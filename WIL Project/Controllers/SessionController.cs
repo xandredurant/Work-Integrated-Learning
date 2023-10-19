@@ -1,57 +1,109 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
 using WIL_Project.DBContext;
 using WIL_Project.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace WIL_Project.Controllers
 {
     public class SessionController : Controller
     {
-        SqlConnection con = new SqlConnection("Server=tcp:work-integrated-learning.database.windows.net,1433;Initial Catalog=WILProject;Persist Security Info=False;User ID=Group1;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        SqlCommand com = new SqlCommand();
-        SqlDataReader dr;
-
         private readonly MyDbContext _context;
+        private readonly UserManager<UserInfo> _userManager; // Include UserManager
 
-        public SessionController(MyDbContext context)
+        public SessionController(MyDbContext context, UserManager<UserInfo> userManager)
         {
             _context = context;
+            _userManager = userManager; // Initialize UserManager
         }
 
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                // Retrieve sessions with related event and speaker information
+                var sessions = await _context.SessionInformation
+                    .Include(s => s.EventInformation) // Include related event
+                    .Include(s => s.SpeakerInformation) // Include related speaker
+                    .ToListAsync();
+
+                return View(sessions);
+            }
+            else
+            {
+                // Handle unauthenticated user
+                return Redirect("/Identity/Account/Login");// Redirect to the login page
+            }
         }
 
         [HttpPost]
-        public IActionResult AddSession(int session_id, string session_name, string date)
+        [Authorize]
+        public async Task<IActionResult> AddSession(int session_id, string date)
         {
             try
             {
-                // Create a new session
-                var session = new UserProgram
+                if (User.Identity.IsAuthenticated)
                 {
-                    //session_name = session_name,
-                    date = date
-                };
+                    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-                // Add the session to the DbSet of UserPrograms
-                _context.Sessions.Add(session);
+                    // Check if the user has already booked the session
+                    var existingBooking = await _context.Sessions
+                        .FirstOrDefaultAsync(s => s.Id == userId && s.SessionID == session_id);
 
-                // Save changes to the database
-                _context.SaveChanges();
+                    if (existingBooking == null)
+                    {
+                        // Create a new UserProgram (booking)
+                        var userProgram = new UserProgram
+                        {
+                            Id = userId, // Use the user's ID
+                            SessionID = session_id,
+                            date = date
+                        };
 
-                return Json(new { message = "Session added successfully" });
+                        // Add the booking to the DbSet of UserPrograms
+                        _context.Sessions.Add(userProgram);
+
+                        // Save changes to the database
+                        await _context.SaveChangesAsync();
+
+                        return Json(new { message = "Session booked successfully" });
+                    }
+                    else
+                    {
+                        // The user has already booked this session
+                        return Json(new { message = "Session is already booked" });
+                    }
+                }
+                else
+                {
+                    // User is not authenticated
+                    return Json(new { message = "Authentication required" });
+                }
             }
             catch (Exception ex)
             {
                 // Log the exception for debugging purposes
                 Console.WriteLine(ex.Message);
-                return Json(new { message = "Failed to add session" });
+                return Json(new { message = "Failed to book session" });
             }
+        }
+        [HttpPost]
+        public JsonResult IsSessionBooked(int session_id)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            // Check if the user has booked the session with the given session_id
+            var isBooked = _context.Sessions.Any(b => b.SessionID == session_id && b.Id == userId);
+
+            return Json(new { isBooked });
         }
     }
 }

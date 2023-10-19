@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WIL_Project.DBContext;
 
@@ -11,9 +12,10 @@ using WIL_Project.DBContext;
 namespace WIL_Project.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231019021724_UpdateMigration-2")]
+    partial class UpdateMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -510,24 +512,21 @@ namespace WIL_Project.Migrations
 
             modelBuilder.Entity("WIL_Project.Models.UserProgram", b =>
                 {
-                    b.Property<int>("BookingID")
+                    b.Property<int>("SessionID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SessionID"), 1L, 1);
 
                     b.Property<string>("Id")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SessionID")
-                        .HasColumnType("int");
-
                     b.Property<string>("date")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BookingID");
+                    b.HasKey("SessionID");
 
                     b.ToTable("Sessions");
                 });

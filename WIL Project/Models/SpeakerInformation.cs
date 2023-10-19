@@ -12,7 +12,9 @@ namespace WIL_Project.Models
         public string SpeakerAffiliation { get; set; }
         public string SpeakerBiography { get; set; }
         public string SpeakerTopic { get; set; }
+        public string SpeakerImage { get; set; }
 
         // Add any navigation properties here if needed.
+
     }
 }
