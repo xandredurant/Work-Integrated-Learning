@@ -108,19 +108,30 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        // Function to check and update the button status
+        function checkAndUpdateSessionBooking(sessionId, button) {
+            $.post("/Session/IsSessionBooked", { session_id: sessionId }, function (data) {
+                if (data.isBooked) {
+                    // Session is already booked, toggle the class
+                    $(button).addClass('added');
+                }
+            });
+        }
+
         // Add a click event handler to show/hide program details
         $('.show-details').click(function () {
             $(this).siblings('.program-details').toggle();
         });
 
-        // Add a click event handler to toggle the class 'added' on the "Add" button
-        $('.add-program-button').click(function () {
-            $(this).toggleClass('added');
-        });
-
-        // Add your JavaScript code here
-
         $(document).ready(function () {
+            $(".add-program-button").each(function () {
+                var button = $(this);
+                var sessionId = button.data("sessionid");
+                // Check and update the button status for each session
+                checkAndUpdateSessionBooking(sessionId, button);
+            });
+
+            // Add a click event handler to book the session
             $(".add-program-button").click(function () {
                 var button = $(this);
                 var sessionId = button.data("sessionid");
@@ -133,7 +144,6 @@
                             if (result.message === "Session booked successfully") {
                                 // Session booked successfully, toggle the class
                                 button.toggleClass('added');
-                                button.text("Booked").attr("disabled", true);
                             }
                             alert(result.message);
                         });
