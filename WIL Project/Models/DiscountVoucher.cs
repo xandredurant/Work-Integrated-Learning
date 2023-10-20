@@ -16,6 +16,8 @@ namespace WIL_Project.Models
         public int LimitPerUser { get; set; }
         public int TimesUsed { get; set; }
         public string EventID { get; set; }
+        public string percentoff { get; set; }
+        public int value { get; set; }
 
         // Navigation property for redemptions related to this discount
         public List<DiscountVoucherRedemption> Redemptions { get; set; }
