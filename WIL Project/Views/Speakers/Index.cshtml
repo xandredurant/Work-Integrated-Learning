@@ -16,7 +16,7 @@
         @foreach (var speaker in Model)
         {
             <div class="speaker">
-                <img src="~/images/speaker-default.jpg" alt="Speaker Image">
+                <img src="~/images/@speaker.SpeakerImage" alt="Speaker Image">
                 <h2>@speaker.SpeakerName</h2>
                 <p>@speaker.SpeakerAffiliation</p>
                 <p>Topic: @speaker.SpeakerTopic</p>

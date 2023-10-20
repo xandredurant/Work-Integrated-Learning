@@ -1,7 +1,9 @@
 ﻿/* Add your custom styles for the event page here */
 main {
     background-color: #04263E;
+    color: #000; /* Set text color to black for better visibility */
 }
+
 /* Event list container */
 .event-list {
     padding: 20px;
@@ -13,12 +15,13 @@ main {
     padding: 15px;
     margin-bottom: 20px;
     cursor: pointer;
-    background-color:white;
+    background-color: white;
+    color: #000; /* Set text color to black for better visibility */
 }
 
 /* Event title */
 .event-title {
-    color: #333;
+    color: #000; /* Set text color to black for better visibility */
     font-size: 24px;
     margin: 0;
     padding: 0;
@@ -28,6 +31,7 @@ main {
 /* Event details */
 .event-details {
     padding: 10px 0;
+    color: #000; /* Set text color to black for better visibility */
 }
 
 /* Reviews container */

@@ -14,35 +14,37 @@
 <body class="program">
     <section id="program-overview">
         <h2>Program Overview</h2>
-        <div class="paragraph-container">
-            <p>
-                Welcome to TECHSPO Johannesburg, where we offer a diverse range of
-                programs designed to enrich your knowledge and inspire innovation. Our
-                programs are carefully curated to provide valuable insights, foster
-                networking opportunities, and drive meaningful discussions within the
-                technology and innovation ecosystem.
-            </p>
+        <div class="overview-box">
+            <div class="paragraph-container">
+                <p>
+                    Welcome to TECHSPO Johannesburg, where we offer a diverse range of
+                    programs designed to enrich your knowledge and inspire innovation. Our
+                    programs are carefully curated to provide valuable insights, foster
+                    networking opportunities, and drive meaningful discussions within the
+                    technology and innovation ecosystem.
+                </p>
 
-            <p>
-                At TECHSPO, we believe in pushing the boundaries of technology, and our
-                programs reflect that commitment. Whether you're a seasoned
-                professional, a tech enthusiast, or a curious learner, you'll find
-                something tailored to your interests and needs.
-            </p>
+                <p>
+                    At TECHSPO, we believe in pushing the boundaries of technology, and our
+                    programs reflect that commitment. Whether you're a seasoned
+                    professional, a tech enthusiast, or a curious learner, you'll find
+                    something tailored to your interests and needs.
+                </p>
 
-            <p>
-                Our programs include interactive workshops, thought-provoking keynote
-                sessions, engaging panel discussions, and much more. Each program is led
-                by industry experts, innovators, and visionaries who are at the
-                forefront of technological advancements.
-            </p>
+                <p>
+                    Our programs include interactive workshops, thought-provoking keynote
+                    sessions, engaging panel discussions, and much more. Each program is led
+                    by industry experts, innovators, and visionaries who are at the
+                    forefront of technological advancements.
+                </p>
 
-            <p>
-                Join us as we explore the latest trends, tackle pressing challenges, and
-                celebrate the spirit of innovation. Discover how TECHSPO Johannesburg
-                can help you stay at the cutting edge of technology and contribute to
-                the great reset of our world.
-            </p>
+                <p>
+                    Join us as we explore the latest trends, tackle pressing challenges, and
+                    celebrate the spirit of innovation. Discover how TECHSPO Johannesburg
+                    can help you stay at the cutting edge of technology and contribute to
+                    the great reset of our world.
+                </p>
+            </div>
         </div>
     </section>
     <section id="program-categories">
@@ -81,8 +83,10 @@
                         <h3 class="program-name">@session.SessionTitle</h3>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <button class="add-program-button" data-sessionid="@session.SessionID" data-sessiondate="@session.SessionStartTime.ToString("yyyy-MM-dd HH:mm:ss")"></button>
-                            <h5 class="book-now">Book Now!!</h5>
+                            <div class="button-container">
+                                <button class="add-program-button" data-sessionid="@session.SessionID" data-sessiondate="@session.SessionStartTime.ToString("yyyy-MM-dd HH:mm:ss")"></button>
+                                <h5 class="book-now">Book Now!!</h5>
+                            </div>
                         }
                         else
                         {
@@ -105,6 +109,7 @@
             }
         </div>
     </section>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
