@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using WIL_Project.ViewModels
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,29 +12,28 @@
     <title>Voucher Page</title>
 </head>
 <body>
-    <h1 style="color:white;">Available Vouchers</h1>
-    <div class="voucher-container">
-        <div class="voucher" onclick="toggleVoucherDetails(this)">
-            <h5 class="voucher-name">Voucher 1</h5>
-            <div class="voucher-details">
-                <p><strong>Voucher Code:</strong> ABC123</p>
-                <p><strong>Value:</strong> R750</p>
-                <p><strong>Expiration Date:</strong> 2023-12-31</p>
-            </div>
-        </div>
 
-        <div class="voucher" onclick="toggleVoucherDetails(this)">
-            <h5 class="voucher-name">Voucher 2</h5>
-            <div class="voucher-details">
-                <p><strong>Voucher Code:</strong> XYZ456</p>
-                <p><strong>Value:</strong> R525</p>
-                <p><strong>Expiration Date:</strong> 2023-10-31</p>
-            </div>
-        </div>
-        <!-- Add more vouchers as needed -->
+    @model VoucherViewModel
+
+    <h1 style="color:white;">Available Vouchers</h1>
+    <div class="voucher-container" id="voucher-container">
+        @foreach (var voucher in Model.DiscountVouchers)
+        {
+            if (voucher.Visibility.ToLower() == "public")
+            {
+                <div class="voucher" onclick="toggleVoucherDetails(this)">
+                    <h5 class="voucher-name">@voucher.DiscountType</h5>
+                    <div class="voucher-details">
+                        <p><strong>Voucher Code:</strong> @voucher.Code</p>
+                        <p><strong>Value:</strong> @voucher.DiscountType</p>
+                        <p><strong>Expiration Date:</strong> @voucher.ValidTo.ToString("yyyy-MM-dd")</p>
+                    </div>
+                </div>
+            }
+        }
     </div>
 
- <h2 style="color:white;">Redeem Vouchers</h2>
+    <h2 style="color:white;">Redeem Vouchers</h2>
     <form method="post" asp-action="AddVoucher" id="redeem-form">
         <label for="voucher-code">Enter Voucher Code:</label>
         <input type="text" id="voucher-code" name="voucherCode" required>
@@ -41,30 +42,28 @@
 
     <h2>Voucher Usage History</h2>
     <div id="usage-history">
-        <!-- Example usage history entries -->
-        <div class="usage-entry">
-            <p><strong>Date:</strong> 2023-09-15</p>
-            <p><strong>Voucher Code:</strong> ABC123</p>
-            <p><strong>Purpose:</strong> Applied to purchase #123</p>
-        </div>
-        <div class="usage-entry">
-            <p><strong>Date:</strong> 2023-09-20</p>
-            <p><strong>Voucher Code:</strong> XYZ456</p>
-            <p><strong>Purpose:</strong> Added to user's account</p>
-        </div>
-        <!-- Add more usage history entries as needed -->
+        @foreach (var entry in Model.DiscountVoucherRedemptions.Take(5))
+        {
+            <div class="usage-entry">
+                <p><strong>Date:</strong> @entry.RedemptionDate.ToString("yyyy-MM-dd")</p>
+                <p><strong>Voucher Code:</strong> @entry.Code</p>
+            </div>
+        }
     </div>
+
 
     <script>
         function toggleVoucherDetails(voucher) {
-            const details = voucher.querySelector('.voucher-details');
-            details.style.display = details.style.display === 'block' ? 'none' : 'block';
-            voucher.classList.toggle('open'); // Add or remove 'open' class
+            // Find the voucher details element within the clicked voucher
+            var details = voucher.querySelector(".voucher-details");
+
+            // Toggle the visibility of the details
+            if (details.style.display === "none" || details.style.display === "") {
+                details.style.display = "block";
+            } else {
+                details.style.display = "none";
+            }
         }
     </script>
 </body>
 </html>
-
-
-
-

@@ -5,12 +5,14 @@ using System.Linq;
 using System.Security.Claims;
 using WIL_Project.DBContext;
 using WIL_Project.Models;
+using WIL_Project.ViewModels;
 
 namespace WIL_Project.Controllers
 {
     public class VoucherController : Controller
     {
         private DBContext.MyDbContext _context; // Replace ApplicationDbContext with your actual DbContext
+
 
         public VoucherController(DBContext.MyDbContext dbContext)
         {
@@ -20,7 +22,14 @@ namespace WIL_Project.Controllers
         // GET: Voucher
         public IActionResult Index()
         {
-            return View();
+          var vm = new VoucherViewModel
+          {
+              DiscountVouchers = _context.DiscountVoucher.ToList(),
+              DiscountVoucherRedemptions = _context.DiscountVoucherRedemption.ToList(),
+          };
+
+
+            return View(vm);
         }
 
         public IActionResult Success()
