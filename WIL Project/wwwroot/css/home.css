@@ -1,0 +1,300 @@
+﻿
+.left-container {
+    margin-top: 10px;
+    width: 700px;
+    background-color: #04263E;
+    border-radius: 8px;
+    padding: 20px;
+    margin-left: -50px;
+    font-family: 'NTR', sans-serif;
+}
+/* Styles for .swiper */
+.swiper {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+/* Styles for .swiper-wrapper */
+.swiper-wrapper {
+    display: flex; /* Display slides in a row */
+    flex-direction: row; /* Set the direction to horizontal */
+}
+
+/* Styles for .swiper-slide */
+.swiper-slide {
+    flex-shrink: 0; /* Prevent slides from shrinking */
+    width: 100%; /* Set a fixed width as a percentage of the container */
+    padding: 10px; /* Add some spacing between slides */
+}
+
+    /* Styles for .swiper-slide img */
+    .swiper-slide img {
+        width: 100%; /* Make images responsive within the slide */
+        aspect-ratio: 16/9;
+        border-radius: 8px;
+    }
+
+/* Styles for .info-count-block */
+.info-count-block {
+    height: 100%;
+    color: #fff;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 36px 0;
+    background: #04263E;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+/* Styles for .mySwiper2 */
+.mySwiper2 {
+    padding: 20px !important;
+    max-width: calc(100% - 40px); /* Adjust maximum width */
+    margin: 20px auto; /* Center the container */
+}
+
+.above-slide-bar {
+    background: #04263E; /* Set the background color */
+    color: #fff; /* Set the text color */
+    text-align: center;
+    padding: 10px 0; /* Adjust padding as needed */
+    font-size: 18px; /* Adjust font size as needed */
+    width: 100vw; /* Use viewport width to make it span the full screen width */
+    margin-top: 10px; /* Adjust the top margin to push it down below the navbar */
+    display: block; /* Set display to block to allow setting width */
+}
+
+.expo-info {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.bio {
+    text-align: center;
+    max-width: 100%;
+    overflow: hidden;
+    padding-top: 10px;
+}
+
+    .bio p {
+        background-color: #75001e;
+        color: white;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 5px 15px;
+        text-transform: uppercase;
+        transform: translateX(100%);
+        white-space: nowrap;
+    }
+
+.text-moving2 {
+    animation: moveText linear 14s forwards infinite;
+}
+
+@keyframes moveText {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-150%);
+    }
+}
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900');
+
+:root {
+    --font: 'Lato', sans-serif;
+    --big: 'Montserrat', sans-serif;
+    --red: #EF2F3C;
+    --white: #F6F4F3;
+    --blue: #276FBF;
+    --dark: #183059;
+    --yellow: #F0A202;
+    --star: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.CountDown {
+    position: relative;
+    margin-left: -109px;
+    overflow: hidden;
+    width: 650px;
+    height: 400px;
+    text-align: center;
+}
+
+
+#timer {
+    color: var(--white);
+    text-transform: uppercase;
+    font-family: var(--font);
+    font-size: .7em;
+    letter-spacing: 5px;
+    margin-top: 25%;
+}
+
+.days, .hours, .minutes, .seconds {
+    display: inline-block;
+    padding: 20px;
+    width: 100px;
+    border-radius: 5px;
+}
+
+.days {
+    background: var(--red);
+}
+
+.hours {
+    background: var(--white);
+    color: var(--dark);
+}
+
+.minutes {
+    background: var(--blue);
+}
+
+.seconds {
+    background: var(--yellow);
+}
+
+
+
+.numbers {
+    font-family: var(--big);
+    color: var(--dark);
+    font-size: 4em;
+}
+
+.white {
+    position: absolute;
+    background: var(--white);
+    height: 85px;
+    width: 75px;
+    left: 30%;
+    top: 2%;
+}
+
+.triangle {
+    border-bottom: 14px solid var(--white);
+}
+
+.string {
+    background: var(--white);
+    border: 1px solid var(--white);
+}
+
+
+
+.red {
+    position: absolute;
+    background: var(--red);
+    left: 18%;
+    top: 9%;
+    height: 65px;
+    width: 70px;
+}
+
+.triangle {
+    border-bottom: 14px solid $red;
+}
+
+.string {
+    background: $red;
+    border: 1px solid $red;
+}
+
+
+.blue {
+    position: absolute;
+    background: var(--blue);
+    height: 80px;
+    width: 80px;
+    left: 60%;
+    top: 5%;
+}
+
+.triangle {
+    border-bottom: 14px solid var(--blue);
+}
+
+.string {
+    background: var(--blue);
+    border: 1px solid var(--blue);
+}
+
+
+
+.balloon {
+    border: 1px solid #000;
+    border-radius: 50% 50% 50% 50%/ 40% 40% 60% 60%;
+    z-index: 2;
+}
+
+.eye {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    top: 40%;
+    left: 22%;
+    background: #000;
+    border-radius: 50%;
+}
+
+    .eye:after {
+        content: '';
+        left: 35px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #000;
+        position: absolute;
+    }
+
+
+
+.mouth {
+    position: absolute;
+    top: 45%;
+    left: 43%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.happy {
+    border: 2px solid;
+    border-color: transparent #000 #000 transparent;
+    transform: rotate(45deg);
+}
+
+.triangle {
+    position: absolute;
+    left: 40%;
+    bottom: -10%;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+}
+
+.string {
+    position: absolute;
+    height: 70px;
+    width: 1px;
+    left: 48%;
+    top: 100%;
+    z-index: -1;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+    background: var(--white);
+    -webkit-clip-path: var(--star);
+    clip-path: var(--star);
+}
